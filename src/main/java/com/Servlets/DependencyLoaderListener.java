@@ -17,13 +17,10 @@ public class DependencyLoaderListener implements ServletContextListener{
         Configuration configuration = new Configuration();
 
         configuration.addAnnotatedClass(ShoppingUser.class);
-        configuration.addAnnotatedClass(Cart.class);
+//        configuration.addAnnotatedClass(Cart.class);
 
         SessionFactory sessionFactory = configuration.buildSessionFactory();
         Session session = sessionFactory.openSession();
-
-
-
 
     }
 

@@ -1,6 +1,7 @@
 package com.entities;
 
 import javax.persistence.*;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -17,38 +18,57 @@ public class ShoppingUser {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column
     private String email;
 
+    @Column
     private String password;
 
+    @Column
     private String username;
 
+    @Column
     private String address;
 
     @Column(name = "card_number")
     private String cardNumber;
 
     // foreign keys in other tables
+    // foreign key for Purchases
     @OneToMany(mappedBy = "user") // name of the shoppinguser object in purchase class
-    private List<Purchases> purchases;
+    private List<Purchases> purchasesList;
 
+    // foreign key for cart
     @OneToMany(mappedBy = "user")
-    private List<Cart> cart;
+    private List<Cart> cartList;
 
-    /*
-    NOTE: may need more consturctors later on
-     */
+    // constructors
     public ShoppingUser() {
     }
 
-    public ShoppingUser(String firstName, String lastName, String email, String password, String username) {
+    public ShoppingUser(Integer id, String firstName, String lastName, String email, String password, String username, String address, String cardNumber, List<Purchases> purchasesList, List<Cart> cartList) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.username = username;
+        this.address = address;
+        this.cardNumber = cardNumber;
+        this.purchasesList = purchasesList;
+        this.cartList = cartList;
     }
-
+    public ShoppingUser(String firstName, String lastName, String email, String password, String username, String address, String cardNumber, List<Purchases> purchasesList, List<Cart> cartList) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.address = address;
+        this.cardNumber = cardNumber;
+        this.purchasesList = purchasesList;
+        this.cartList = cartList;
+    }
     public ShoppingUser(Integer id, String firstName, String lastName, String email, String password, String username, String address, String cardNumber) {
         this.id = id;
         this.firstName = firstName;
@@ -58,7 +78,62 @@ public class ShoppingUser {
         this.username = username;
         this.address = address;
         this.cardNumber = cardNumber;
+        this.purchasesList = new LinkedList<>();
+        this.cartList = new LinkedList<>();
     }
+    public ShoppingUser(String firstName, String lastName, String email, String password, String username, String address, String cardNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.address = address;
+        this.cardNumber = cardNumber;
+        this.purchasesList = new LinkedList<>();
+        this.cartList = new LinkedList<>();
+    }
+
+    public ShoppingUser(Integer id, String firstName, String lastName, String email, String password, String username, List<Purchases> purchasesList, List<Cart> cartList) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.purchasesList = purchasesList;
+        this.cartList = cartList;
+    }
+    public ShoppingUser(String firstName, String lastName, String email, String password, String username, List<Purchases> purchasesList, List<Cart> cartList) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.purchasesList = purchasesList;
+        this.cartList = cartList;
+    }
+    public ShoppingUser(Integer id, String firstName, String lastName, String email, String password, String username) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.purchasesList = new LinkedList<>();
+        this.cartList = new LinkedList<>();
+    }
+    public ShoppingUser(String firstName, String lastName, String email, String password, String username) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.purchasesList = new LinkedList<>();
+        this.cartList = new LinkedList<>();
+    }
+
+    //getters and setters
+
 
     public Integer getId() {
         return id;
@@ -122,5 +197,21 @@ public class ShoppingUser {
 
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
+    }
+
+    public List<Purchases> getPurchasesList() {
+        return purchasesList;
+    }
+
+    public void setPurchasesList(List<Purchases> purchasesList) {
+        this.purchasesList = purchasesList;
+    }
+
+    public List<Cart> getCartList() {
+        return cartList;
+    }
+
+    public void setCartList(List<Cart> cartList) {
+        this.cartList = cartList;
     }
 }

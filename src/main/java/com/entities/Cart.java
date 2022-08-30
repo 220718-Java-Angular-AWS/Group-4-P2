@@ -4,39 +4,55 @@ import com.entities.ShoppingUser;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.util.List;
 
 @Entity
 @Table(name = "cart")
 public class Cart {
 
     @Column(name = "item_id")
-    private Integer id;
+    private Integer itemId;
+
     @Column(name = "user_id")
     private Integer userID;
+
     @Column
     private Integer quantity;
 
-    // need shopping user object to create foreign key
+
+
+    // foreign key for item_id which is from catalog
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "itemId", nullable = false)
+    private Catalog catalog;
+
+    // foreign key userID which is from ShoppingUser
+    @ManyToOne
+    @JoinColumn(name = "id", nullable = false)
     private ShoppingUser user;
 
+
+    // constructors
     public Cart() {
     }
 
-    public Cart(Integer id, Integer userID, Integer quantity, ShoppingUser user) {
-        this.id = id;
-        this.userID = userID;
-        this.quantity = quantity;
+    public Cart(Integer itemId, Integer userID, Integer quantity, Catalog catalog, ShoppingUser user) {
+        this.catalog = catalog;
         this.user = user;
+        this.itemId = catalog.getItemId();
+        this.userID = user.getId();
+        this.quantity = quantity;
+
     }
 
-    public Integer getId() {
-        return id;
+    // getters and setters
+
+    public Integer getItemId() {
+        return itemId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setItemId(Integer itemId) {
+        this.itemId = itemId;
     }
 
     public Integer getUserID() {
@@ -53,6 +69,14 @@ public class Cart {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Catalog getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(Catalog catalog) {
+        this.catalog = catalog;
     }
 
     public ShoppingUser getUser() {
