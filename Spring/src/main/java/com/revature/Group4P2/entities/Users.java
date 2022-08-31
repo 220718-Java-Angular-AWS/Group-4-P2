@@ -34,7 +34,7 @@ public class Users {
     @Column(name = "card_number")
     private String cardNumber;
 
-    @OneToMany(mappedBy = "user") // name of the shoppinguser object in purchase class
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) // name of the shoppinguser object in purchase class
     @JsonManagedReference
     private List<Purchases> purchasesList;
 //
@@ -58,8 +58,7 @@ public class Users {
         this.username = username;
         this.address = address;
         this.cardNumber = cardNumber;
-//        this.purchasesList = new LinkedList<>();
-//        this.cartList = new LinkedList<>();
+
     }
     public Users( String firstName, String lastName, String email, String password, String username, String address, String cardNumber) {
         this.firstName = firstName;
@@ -69,8 +68,6 @@ public class Users {
         this.username = username;
         this.address = address;
         this.cardNumber = cardNumber;
-//        this.purchasesList = new LinkedList<>();
-//        this.cartList = new LinkedList<>();
     }
 
     // getters and setters

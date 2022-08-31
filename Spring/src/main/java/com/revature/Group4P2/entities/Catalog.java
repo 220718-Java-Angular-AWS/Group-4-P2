@@ -24,7 +24,11 @@ public class Catalog {
     private String catalogGroup;
 
     @ManyToOne(cascade = CascadeType.ALL)
+<<<<<<< HEAD
 //   @JoinColumn(name = "catalog_details_group", nullable = false)
+=======
+//    @JoinColumn(name = "catalog_details_group", nullable = false)
+>>>>>>> e0de2afa04b8f45759bd3a4354f9a05345b3fc72
     @JsonBackReference
     private CatalogDetails catalogDetails;
 

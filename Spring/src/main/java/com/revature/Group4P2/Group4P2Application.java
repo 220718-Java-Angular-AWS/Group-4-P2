@@ -9,9 +9,12 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 public class Group4P2Application {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(Group4P2Application.class, args);
 		System.out.println("random");
 		Configuration config = new Configuration();
 	}
+
+
 
 }
