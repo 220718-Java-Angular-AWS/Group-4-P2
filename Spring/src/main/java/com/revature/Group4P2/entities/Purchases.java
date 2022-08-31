@@ -30,12 +30,12 @@ public class Purchases {
 
     // foreign key objects
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "item_id") // not sure if needed still
+//    @JoinColumn(name = "item_id") // not sure if needed still
     @JsonBackReference
     private Catalog catalog;
-
+//
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
+//    @JoinColumn(name = "user_id")
     @JsonBackReference
     private Users user;
 

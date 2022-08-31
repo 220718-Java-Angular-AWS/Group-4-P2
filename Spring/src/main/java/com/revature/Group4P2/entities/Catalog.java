@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity(name = "catalog")
 public class Catalog {
-
+    @Id
     @Column(name = "item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer itemId;
@@ -24,7 +24,7 @@ public class Catalog {
     private String catalogGroup;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "catalog_details_group", nullable = false)
+//   @JoinColumn(name = "catalog_details_group", nullable = false)
     @JsonBackReference
     private CatalogDetails catalogDetails;
 

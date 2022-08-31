@@ -7,6 +7,8 @@ import java.util.Objects;
 
 @Entity(name = "cart")
 public class Cart {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Integer itemId;
 
@@ -21,13 +23,13 @@ public class Cart {
     // foreign key for item_id which is from catalog
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    @JoinColumn(name = "item_id", nullable = false)
+//    @JoinColumn(name = "item_id", nullable = false)
     private Catalog catalog;
 
     // foreign key userID which is from ShoppingUser
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference
-    @JoinColumn(name = "user_id", nullable = false)
+//    @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
 
