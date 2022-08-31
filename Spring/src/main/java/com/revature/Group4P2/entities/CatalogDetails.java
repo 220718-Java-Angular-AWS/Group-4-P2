@@ -1,14 +1,12 @@
-package com.revature.Group4P2.beans.entities;
+package com.revature.Group4P2.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "catalog_details")
+@Entity(name = "catalog_details")
 public class CatalogDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

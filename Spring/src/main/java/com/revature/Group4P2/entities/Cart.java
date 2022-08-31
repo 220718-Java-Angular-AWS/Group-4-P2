@@ -1,14 +1,11 @@
-package com.revature.Group4P2.beans.entities;
+package com.revature.Group4P2.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.List;
 import java.util.Objects;
 
-@Entity
-@Table(name = "cart")
+@Entity(name = "cart")
 public class Cart {
     @Column(name = "item_id")
     private Integer itemId;
