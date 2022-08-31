@@ -67,7 +67,6 @@ public class CatalogDetails {
         return "CatalogDetails{" +
                 "catalogDetailsId=" + catalogDetailsId +
                 ", catalogDetailsGroup='" + catalogDetailsGroup + '\'' +
-                ", catalogList=" + catalogList +
                 '}';
     }
 
