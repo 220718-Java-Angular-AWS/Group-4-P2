@@ -37,7 +37,7 @@ public class Users {
     @OneToMany(mappedBy = "user") // name of the shoppinguser object in purchase class
     @JsonManagedReference
     private List<Purchases> purchasesList;
-
+//
     // foreign key for cart
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference

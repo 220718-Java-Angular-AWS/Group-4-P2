@@ -7,7 +7,6 @@ import java.util.Objects;
 
 @Entity(name = "catalog")
 public class Catalog {
-
     //When I pulled from gitHub the ID annotation was missing here
     @Id
     @Column(name = "item_id")
@@ -26,7 +25,7 @@ public class Catalog {
     private String catalogGroup;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "catalog_details_group", nullable = false)
+//   @JoinColumn(name = "catalog_details_group", nullable = false)
     @JsonBackReference
     private CatalogDetails catalogDetails;
 
