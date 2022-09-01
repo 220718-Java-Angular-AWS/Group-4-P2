@@ -8,6 +8,8 @@ import java.util.Objects;
 @Entity(name = "catalog")
 public class Catalog {
 
+    //When I pulled from gitHub the ID annotation was missing here
+    @Id
     @Column(name = "item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer itemId;

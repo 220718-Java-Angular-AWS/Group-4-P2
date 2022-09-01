@@ -7,6 +7,9 @@ import java.util.Objects;
 
 @Entity(name = "cart")
 public class Cart {
+    //Needed to add the Id annotation myself
+    //Error message on my end says that this itemId in this Class should be mapped with insert="false" update="false"
+    @Id
     @Column(name = "item_id")
     private Integer itemId;
 
