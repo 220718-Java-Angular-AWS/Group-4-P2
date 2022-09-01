@@ -38,6 +38,8 @@ public class CatalogService {
     // create
     public void createCatalog(Catalog catalog)
     {
+        System.out.println("Catalog: " + catalog);
+
         repo.save(catalog);
     }
 

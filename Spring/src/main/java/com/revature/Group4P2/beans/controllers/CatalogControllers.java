@@ -1,8 +1,10 @@
 package com.revature.Group4P2.beans.controllers;
 
+import com.revature.Group4P2.beans.services.CatalogDetailService;
 import com.revature.Group4P2.beans.services.CatalogService;
 import com.revature.Group4P2.entities.Cart;
 import com.revature.Group4P2.entities.Catalog;
+import com.revature.Group4P2.entities.CatalogDetails;
 import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +19,13 @@ import java.util.Optional;
 public class CatalogControllers {
 
     private CatalogService service;
+    private CatalogDetailService catalogDetailService;
 
     @Autowired
-    public CatalogControllers(CatalogService catalogService)
+    public CatalogControllers(CatalogService catalogService, CatalogDetailService catalogDetailService)
     {
         this.service = catalogService;
+        this.catalogDetailService = catalogDetailService;
 
     }
 
@@ -47,6 +51,11 @@ public class CatalogControllers {
     @ResponseStatus(value = HttpStatus.OK)
     public void createCatalog(@RequestBody Catalog catalog)
     {
+        //reaches out to the database and retrieves the object which corresponds to the row in the table that is denoted by ID: 1
+        Optional<CatalogDetails> optional = catalogDetailService.getCatalogDetailById(catalog.getCatalogDetails().getCatalogDetailsId());
+        if(optional.isPresent()) {
+            catalog.setCatalogDetails(catalogDetailService.getCatalogDetailById(catalog.getCatalogDetails().getCatalogDetailsId()).get());
+        }
         service.createCatalog(catalog);
     }
 
