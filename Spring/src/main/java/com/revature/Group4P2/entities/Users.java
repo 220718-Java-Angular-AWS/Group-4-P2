@@ -1,16 +1,16 @@
 package com.revature.Group4P2.entities;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "shopping_user")
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "first_name")
@@ -34,14 +34,17 @@ public class Users {
     @Column(name = "card_number")
     private String cardNumber;
 
+
+    // WHEN THESE ARE COMMENTED OUT IT WILL POST
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) // name of the shoppinguser object in purchase class
-    @JsonManagedReference
-    private List<Purchases> purchasesList;
+    @JsonManagedReference(value = "user-purchases")
+    private List<Purchases> purchases ;
 //
     // foreign key for cart
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Cart> cartList;
+    @JsonManagedReference(value = "user-cart")
+    private List<Cart> cart ;
 
     // constructors
 
@@ -59,6 +62,7 @@ public class Users {
         this.address = address;
         this.cardNumber = cardNumber;
 
+
     }
     public Users( String firstName, String lastName, String email, String password, String username, String address, String cardNumber) {
         this.firstName = firstName;
@@ -68,6 +72,7 @@ public class Users {
         this.username = username;
         this.address = address;
         this.cardNumber = cardNumber;
+
     }
 
     // getters and setters
@@ -136,20 +141,20 @@ public class Users {
         this.cardNumber = cardNumber;
     }
 
-    public List<Purchases> getPurchasesList() {
-        return purchasesList;
+    public List<Purchases> getPurchases() {
+        return purchases;
     }
 
-    public void setPurchasesList(List<Purchases> purchasesList) {
-        this.purchasesList = purchasesList;
+    public void setPurchases(List<Purchases> purchases) {
+        this.purchases = purchases;
     }
 
-    public List<Cart> getCartList() {
-        return cartList;
+    public List<Cart> getCart() {
+        return cart;
     }
 
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
+    public void setCart(List<Cart> cart) {
+        this.cart = cart;
     }
 
     @Override
@@ -171,11 +176,11 @@ public class Users {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Users users = (Users) o;
-        return Objects.equals(id, users.id) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(password, users.password) && Objects.equals(username, users.username) && Objects.equals(address, users.address) && Objects.equals(cardNumber, users.cardNumber) && Objects.equals(purchasesList, users.purchasesList) && Objects.equals(cartList, users.cartList);
+        return Objects.equals(id, users.id) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(password, users.password) && Objects.equals(username, users.username) && Objects.equals(address, users.address) && Objects.equals(cardNumber, users.cardNumber) && Objects.equals(purchases, users.purchases) && Objects.equals(cart, users.cart);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password, username, address, cardNumber, purchasesList, cartList);
+        return Objects.hash(id, firstName, lastName, email, password, username, address, cardNumber, purchases, cart);
     }
 }

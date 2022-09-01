@@ -12,8 +12,8 @@ public class Cart {
     @Column(name = "item_id")
     private Integer itemId;
 
-    @Column(name = "user_id")
-    private Integer userID;
+//    @Column(name = "user_id")
+//    private Integer userID;
 
     @Column
     private Integer quantity;
@@ -21,15 +21,13 @@ public class Cart {
 
 
     // foreign key for item_id which is from catalog
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
-//    @JoinColumn(name = "item_id", nullable = false)
+    @ManyToOne( cascade = CascadeType.ALL)
+    @JsonBackReference(value = "catalog-cart")
     private Catalog catalog;
 
     // foreign key userID which is from ShoppingUser
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonBackReference
-//    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference(value = "user-cart")
     private Users user;
 
 
@@ -37,16 +35,15 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(Integer itemId, Integer userID, Integer quantity, Catalog catalog, Users user) {
+    public Cart(Integer itemId, Integer quantity, Catalog catalog, Users user) {
         this.itemId = itemId;
-        this.userID = userID;
+//        this.userID = userID;
         this.quantity = quantity;
         this.catalog = catalog;
         this.user = user;
     }
 
-    public Cart( Integer userID, Integer quantity, Catalog catalog, Users user) {
-        this.userID = userID;
+    public Cart( Integer quantity, Catalog catalog, Users user) {
         this.quantity = quantity;
         this.catalog = catalog;
         this.user = user;
@@ -63,13 +60,13 @@ public class Cart {
         this.itemId = itemId;
     }
 
-    public Integer getUserID() {
-        return userID;
-    }
-
-    public void setUserID(Integer userID) {
-        this.userID = userID;
-    }
+//    public Integer getUserID() {
+//        return userID;
+//    }
+//
+//    public void setUserID(Integer userID) {
+//        this.userID = userID;
+//    }
 
     public Integer getQuantity() {
         return quantity;
@@ -99,7 +96,7 @@ public class Cart {
     public String toString() {
         return "Cart{" +
                 "itemId=" + itemId +
-                ", userID=" + userID +
+//                ", userID=" + userID +
                 ", quantity=" + quantity +
                 ", catalog=" + catalog +
                 ", user=" + user +
@@ -111,11 +108,11 @@ public class Cart {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cart cart = (Cart) o;
-        return Objects.equals(itemId, cart.itemId) && Objects.equals(userID, cart.userID) && Objects.equals(quantity, cart.quantity) && Objects.equals(catalog, cart.catalog) && Objects.equals(user, cart.user);
+        return Objects.equals(itemId, cart.itemId)  && Objects.equals(quantity, cart.quantity) && Objects.equals(catalog, cart.catalog) && Objects.equals(user, cart.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemId, userID, quantity, catalog, user);
+        return Objects.hash(itemId, quantity, catalog, user);
     }
 }

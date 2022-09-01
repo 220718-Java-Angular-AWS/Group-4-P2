@@ -19,7 +19,7 @@ public class CatalogDetails {
     // foreign key references passed
     // has a one to many reference
     @OneToMany(mappedBy = "catalogDetails",cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @JsonManagedReference(value = "catalogDetails - catalog")
     private List<Catalog> catalogList;
 
     // constructors

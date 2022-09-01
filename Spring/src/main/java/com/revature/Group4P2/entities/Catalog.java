@@ -1,8 +1,10 @@
 package com.revature.Group4P2.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "catalog")
@@ -20,33 +22,35 @@ public class Catalog {
 
 //    private Integer Inventory;
 
-    @Column(name = "catalog_group")
-    private String catalogGroup;
+//    @Column(name = "catalog_group")
+//    private String catalogGroup;
 
     @ManyToOne(cascade = CascadeType.ALL)
-<<<<<<< HEAD
-//   @JoinColumn(name = "catalog_details_group", nullable = false)
-=======
-//    @JoinColumn(name = "catalog_details_group", nullable = false)
->>>>>>> e0de2afa04b8f45759bd3a4354f9a05345b3fc72
-    @JsonBackReference
+    @JsonBackReference(value = "catalogDetails - catalog")
     private CatalogDetails catalogDetails;
 
+    @OneToMany(mappedBy = "catalog", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "catalog-cart")
+    private List<Cart> cartList;
+
+    @OneToMany(mappedBy = "catalog", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "purchase-catalog")
+    private List<Purchases> purchaseList;
 
     public Catalog() {
     }
 
-    public Catalog(Integer itemId, String itemName, Double itemPrice, String catalogGroup, CatalogDetails catalogDetails) {
+    public Catalog(Integer itemId, String itemName, Double itemPrice, CatalogDetails catalogDetails) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-        this.catalogGroup = catalogGroup;
+//        this.catalogGroup = catalogGroup;
         this.catalogDetails = catalogDetails;
     }
-    public Catalog( String itemName, Double itemPrice, String catalogGroup, CatalogDetails catalogDetails) {
+    public Catalog( String itemName, Double itemPrice, CatalogDetails catalogDetails) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-        this.catalogGroup = catalogGroup;
+//        this.catalogGroup = catalogGroup;
         this.catalogDetails = catalogDetails;
     }
 
@@ -77,13 +81,13 @@ public class Catalog {
         this.itemPrice = itemPrice;
     }
 
-    public String getCatalogGroup() {
-        return catalogGroup;
-    }
-
-    public void setCatalogGroup(String catalogGroup) {
-        this.catalogGroup = catalogGroup;
-    }
+//    public String getCatalogGroup() {
+//        return catalogGroup;
+//    }
+//
+//    public void setCatalogGroup(String catalogGroup) {
+//        this.catalogGroup = catalogGroup;
+//    }
 
     public CatalogDetails getCatalogDetails() {
         return catalogDetails;
@@ -93,14 +97,32 @@ public class Catalog {
         this.catalogDetails = catalogDetails;
     }
 
+    public List<Cart> getCartList() {
+        return cartList;
+    }
+
+    public void setCartList(List<Cart> cartList) {
+        this.cartList = cartList;
+    }
+
+    public List<Purchases> getPurchaseList() {
+        return purchaseList;
+    }
+
+    public void setPurchaseList(List<Purchases> purchaseList) {
+        this.purchaseList = purchaseList;
+    }
+
     @Override
     public String toString() {
         return "Catalog{" +
                 "itemId=" + itemId +
                 ", itemName='" + itemName + '\'' +
                 ", itemPrice=" + itemPrice +
-                ", catalogGroup='" + catalogGroup + '\'' +
+//                ", catalogGroup='" + catalogGroup + '\'' +
                 ", catalogDetails=" + catalogDetails +
+                ", cartList=" + cartList +
+                ", purchaseList=" + purchaseList +
                 '}';
     }
 
@@ -109,15 +131,13 @@ public class Catalog {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Catalog catalog = (Catalog) o;
-        return Objects.equals(itemId, catalog.itemId) && Objects.equals(itemName, catalog.itemName) && Objects.equals(itemPrice, catalog.itemPrice) && Objects.equals(catalogGroup, catalog.catalogGroup) && Objects.equals(catalogDetails, catalog.catalogDetails);
+        return Objects.equals(itemId, catalog.itemId) && Objects.equals(itemName, catalog.itemName) && Objects.equals(itemPrice, catalog.itemPrice) && Objects.equals(catalogDetails, catalog.catalogDetails) && Objects.equals(cartList, catalog.cartList) && Objects.equals(purchaseList, catalog.purchaseList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemId, itemName, itemPrice, catalogGroup, catalogDetails);
+        return Objects.hash(itemId, itemName, itemPrice, catalogDetails, cartList, purchaseList);
     }
-
-
 }
 
 
