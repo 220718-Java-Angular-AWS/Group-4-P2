@@ -9,6 +9,7 @@ import java.util.Objects;
 
 @Entity(name = "catalog")
 public class Catalog {
+    // columns and variables
     @Id
     @Column(name = "item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +21,6 @@ public class Catalog {
     @Column(name = "item_price")
     private Double itemPrice;
 
-//    private Integer Inventory;
-
-//    @Column(name = "catalog_group")
-//    private String catalogGroup;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "catalogDetails - catalog")
@@ -44,19 +41,15 @@ public class Catalog {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-//        this.catalogGroup = catalogGroup;
         this.catalogDetails = catalogDetails;
     }
     public Catalog( String itemName, Double itemPrice, CatalogDetails catalogDetails) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-//        this.catalogGroup = catalogGroup;
         this.catalogDetails = catalogDetails;
     }
 
     // getters and setters
-
-
     public Integer getItemId() {
         return itemId;
     }
@@ -80,14 +73,6 @@ public class Catalog {
     public void setItemPrice(Double itemPrice) {
         this.itemPrice = itemPrice;
     }
-
-//    public String getCatalogGroup() {
-//        return catalogGroup;
-//    }
-//
-//    public void setCatalogGroup(String catalogGroup) {
-//        this.catalogGroup = catalogGroup;
-//    }
 
     public CatalogDetails getCatalogDetails() {
         return catalogDetails;
@@ -113,13 +98,13 @@ public class Catalog {
         this.purchaseList = purchaseList;
     }
 
+
     @Override
     public String toString() {
         return "Catalog{" +
                 "itemId=" + itemId +
                 ", itemName='" + itemName + '\'' +
                 ", itemPrice=" + itemPrice +
-//                ", catalogGroup='" + catalogGroup + '\'' +
                 ", catalogDetails=" + catalogDetails +
                 ", cartList=" + cartList +
                 ", purchaseList=" + purchaseList +

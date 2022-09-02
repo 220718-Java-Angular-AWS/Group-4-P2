@@ -8,6 +8,8 @@ import java.util.Objects;
 
 @Entity(name = "catalog_details")
 public class CatalogDetails {
+
+    // columns and attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "catalog_details_id")

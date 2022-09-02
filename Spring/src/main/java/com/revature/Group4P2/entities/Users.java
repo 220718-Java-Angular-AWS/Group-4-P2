@@ -2,12 +2,12 @@ package com.revature.Group4P2.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "shopping_user")
 public class Users {
+    // columns and variables
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,8 +61,6 @@ public class Users {
         this.username = username;
         this.address = address;
         this.cardNumber = cardNumber;
-
-
     }
     public Users( String firstName, String lastName, String email, String password, String username, String address, String cardNumber) {
         this.firstName = firstName;

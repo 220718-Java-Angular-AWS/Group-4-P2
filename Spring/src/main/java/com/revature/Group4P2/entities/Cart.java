@@ -1,23 +1,22 @@
 package com.revature.Group4P2.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "cart")
 public class Cart {
+    // columns and attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
     private Integer itemId;
 
-//    @Column(name = "user_id")
-//    private Integer userID;
-
     @Column
     private Integer quantity;
-
 
 
     // foreign key for item_id which is from catalog
@@ -30,6 +29,10 @@ public class Cart {
     @JsonBackReference(value = "user-cart")
     private Users user;
 
+    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "purchase-cart")
+    private List<Purchases> purchasesList;
+
 
     // constructors
     public Cart() {
@@ -37,14 +40,12 @@ public class Cart {
 
     public Cart(Integer itemId, Integer quantity, Catalog catalog, Users user) {
         this.itemId = itemId;
-//        this.userID = userID;
         this.quantity = quantity;
         this.catalog = catalog;
         this.user = user;
     }
 
     public Cart( Integer quantity, Catalog catalog, Users user) {
-        //        this.userID = userID;
         this.quantity = quantity;
         this.catalog = catalog;
         this.user = user;
@@ -60,14 +61,6 @@ public class Cart {
     public void setItemId(Integer itemId) {
         this.itemId = itemId;
     }
-
-//    public Integer getUserID() {
-//        return userID;
-//    }
-//
-//    public void setUserID(Integer userID) {
-//        this.userID = userID;
-//    }
 
     public Integer getQuantity() {
         return quantity;
@@ -93,14 +86,22 @@ public class Cart {
         this.user = user;
     }
 
+    public List<Purchases> getPurchasesList() {
+        return purchasesList;
+    }
+
+    public void setPurchasesList(List<Purchases> purchasesList) {
+        this.purchasesList = purchasesList;
+    }
+
     @Override
     public String toString() {
         return "Cart{" +
                 "itemId=" + itemId +
-//                ", userID=" + userID +
                 ", quantity=" + quantity +
                 ", catalog=" + catalog +
                 ", user=" + user +
+                ", purchasesList=" + purchasesList +
                 '}';
     }
 
@@ -109,11 +110,12 @@ public class Cart {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cart cart = (Cart) o;
-        return Objects.equals(itemId, cart.itemId)  && Objects.equals(quantity, cart.quantity) && Objects.equals(catalog, cart.catalog) && Objects.equals(user, cart.user);
+        return Objects.equals(itemId, cart.itemId) && Objects.equals(quantity, cart.quantity) && Objects.equals(catalog, cart.catalog) && Objects.equals(user, cart.user) && Objects.equals(purchasesList, cart.purchasesList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemId, quantity, catalog, user);
+        return Objects.hash(itemId, quantity, catalog, user, purchasesList);
     }
+
 }

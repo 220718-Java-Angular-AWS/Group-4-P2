@@ -24,6 +24,7 @@ public class PurchaseService {
     // get by id
     public Optional<Purchases> getPurchaseById(Integer id)
     {
+//        Purchases purchases = repo.findById(id).get();
         return repo.findById(id);
     }
 

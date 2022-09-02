@@ -8,27 +8,27 @@ import java.util.Objects;
 @Entity(name = "purchases")
 public class Purchases {
 
+    // columns and variables
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "purchase_id")
     private Integer purchaseId;
 
-//    @Column(name = "item_id")
-//    private Integer itemId;
-
     @Column
     private String date;
 
     @Column(name = "quantity_purchased")
-    private Double quantityPurchased;
+    private Integer quantityPurchased; // this is something from cart
 
     @Column(name = "total_amount")
     private Double totalAmount;
 
-//    @Column(name = "user_id")
-//    private Integer userId;
 
     // foreign key objects
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JsonBackReference(value = "purchase-cart")
+    private Cart cart;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "purchase-catalog")
     private Catalog catalog;
@@ -42,23 +42,23 @@ public class Purchases {
     public Purchases() {
     }
 
-    public Purchases(Integer purchaseId, String date, Double quantityPurchased, Double totalAmount, Catalog catalog, Users user) {
+    public Purchases(Integer purchaseId, String date, Integer quantityPurchased, Double totalAmount, Catalog catalog, Users user, Cart cart) {
         this.purchaseId = purchaseId;
-//        this.itemId = itemId;
         this.date = date;
         this.quantityPurchased = quantityPurchased;
         this.totalAmount = totalAmount;
-//        this.userId = userId;
         this.catalog = catalog;
         this.user = user;
+        this.cart = cart;
     }
 
-    public Purchases( String date, Double quantityPurchased, Double totalAmount, Catalog catalog, Users user) {
+    public Purchases( String date, Integer quantityPurchased, Double totalAmount, Catalog catalog, Users user, Cart cart) {
         this.date = date;
         this.quantityPurchased = quantityPurchased;
         this.totalAmount = totalAmount;
         this.catalog = catalog;
         this.user = user;
+        this.cart = cart;
     }
 
 
@@ -73,14 +73,6 @@ public class Purchases {
         this.purchaseId = purchaseId;
     }
 
-//    public Integer getItemId() {
-//        return itemId;
-//    }
-//
-//    public void setItemId(Integer itemId) {
-//        this.itemId = itemId;
-//    }
-
     public String getDate() {
         return date;
     }
@@ -89,11 +81,11 @@ public class Purchases {
         this.date = date;
     }
 
-    public Double getQuantityPurchased() {
+    public Integer getQuantityPurchased() {
         return quantityPurchased;
     }
 
-    public void setQuantityPurchased(Double quantityPurchased) {
+    public void setQuantityPurchased(Integer quantityPurchased) {
         this.quantityPurchased = quantityPurchased;
     }
 
@@ -105,13 +97,13 @@ public class Purchases {
         this.totalAmount = totalAmount;
     }
 
-//    public Integer getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(Integer userId) {
-//        this.userId = userId;
-//    }
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
 
     public Catalog getCatalog() {
         return catalog;
@@ -133,11 +125,10 @@ public class Purchases {
     public String toString() {
         return "Purchases{" +
                 "purchaseId=" + purchaseId +
-//                ", itemId=" + itemId +
                 ", date='" + date + '\'' +
                 ", quantityPurchased=" + quantityPurchased +
                 ", totalAmount=" + totalAmount +
-//                ", userId=" + userId +
+                ", cart=" + cart +
                 ", catalog=" + catalog +
                 ", user=" + user +
                 '}';
@@ -148,11 +139,11 @@ public class Purchases {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Purchases purchases = (Purchases) o;
-        return Objects.equals(purchaseId, purchases.purchaseId) && Objects.equals(date, purchases.date) && Objects.equals(quantityPurchased, purchases.quantityPurchased) && Objects.equals(totalAmount, purchases.totalAmount)  && Objects.equals(catalog, purchases.catalog) && Objects.equals(user, purchases.user);
+        return Objects.equals(purchaseId, purchases.purchaseId) && Objects.equals(date, purchases.date) && Objects.equals(quantityPurchased, purchases.quantityPurchased) && Objects.equals(totalAmount, purchases.totalAmount) && Objects.equals(cart, purchases.cart) && Objects.equals(catalog, purchases.catalog) && Objects.equals(user, purchases.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(purchaseId, date, quantityPurchased, totalAmount,catalog, user);
+        return Objects.hash(purchaseId, date, quantityPurchased, totalAmount, cart, catalog, user);
     }
 }
