@@ -25,7 +25,7 @@ public class ValidateService {
         if(users.getUsername() == null || !Pattern.matches("^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$", users.getUsername())) {
             check = false;
         }
-        if(users.getAddress() == null || !Pattern.matches("^[a-zA-Z0-9]*$", users.getAddress())) {
+        if(users.getAddress() == null || !Pattern.matches("^[a-zA-Z0-9 ]*$", users.getAddress())) {
             check = false;
         }
         if(users.getCardNumber() == null || !Pattern.matches("^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
