@@ -1,23 +1,23 @@
 package com.revature.Group4P2.DTOS;
 
-public class principal {
-    private String email;
+public class Login {
+    private String username;
     private String password;
 
-    public principal(String email, String password) {
-        this.email = email;
+    public Login(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public principal() {
+    public Login() {
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -27,5 +27,5 @@ public class principal {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
+
