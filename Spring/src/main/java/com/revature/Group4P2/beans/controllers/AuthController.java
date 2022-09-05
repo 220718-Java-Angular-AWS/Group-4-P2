@@ -19,7 +19,7 @@ public class AuthController {
 
 
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public Users authenticate(@RequestBody Login login) throws AccessDeniedException {
+    public Users authenticate(@RequestBody Login login) throws com.revature.Group4P2.exceptions.AccessDeniedException {
         return service.authenticate(login.getUsername(), login.getPassword());
     }
 
