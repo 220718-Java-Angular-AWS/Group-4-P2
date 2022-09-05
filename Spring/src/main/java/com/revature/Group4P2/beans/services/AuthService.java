@@ -18,7 +18,7 @@ public class AuthService {
     }
 
     public Users authenticate(String username, String password) throws AccessDeniedException {
-        Optional<Users> result = repo.findByEmail(username);
+        Optional<Users> result = repo.findByUsername(username);
         if(result.isPresent() && result.get().getPassword().equals(password)) {
             return result.get();
         } else {
