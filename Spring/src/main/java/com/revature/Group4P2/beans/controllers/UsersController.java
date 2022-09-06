@@ -2,6 +2,7 @@ package com.revature.Group4P2.beans.controllers;
 
 import com.revature.Group4P2.beans.services.UserService;
 import com.revature.Group4P2.entities.Users;
+import com.revature.Group4P2.exceptions.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -46,8 +47,7 @@ public class UsersController {
     // POST - create - save,
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void createUser(@RequestBody Users user)
-    {
+    public void createUsers(@RequestBody Users user) throws InvalidInputException {
         System.out.println("MADE INTO POST");
         service.createUsers(user);
     }

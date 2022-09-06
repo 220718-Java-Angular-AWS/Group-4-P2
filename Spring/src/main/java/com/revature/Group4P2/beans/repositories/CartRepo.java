@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface CartRepo extends JpaRepository<Cart, Integer> {
 
-
     // NOTE: here make other needed queries
     // helpful site: https://www.tutorialspoint.com/spring_boot_jpa/spring_boot_jpa_native_queries.htm
 
