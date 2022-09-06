@@ -3,10 +3,7 @@ package com.revature.Group4P2.beans.controllers;
 import com.revature.Group4P2.beans.services.CartService;
 import com.revature.Group4P2.beans.services.CatalogService;
 import com.revature.Group4P2.beans.services.UserService;
-import com.revature.Group4P2.entities.Cart;
-import com.revature.Group4P2.entities.Catalog;
-import com.revature.Group4P2.entities.CatalogDetails;
-import com.revature.Group4P2.entities.Users;
+import com.revature.Group4P2.entities.*;
 import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +38,14 @@ public class CartControllers {
     {
         Optional<Cart> optionalCart = service.getCartById(cartId);
         return optionalCart.get();
+    }
+
+    @RequestMapping(value = "getAllCartById/{getAllCartById}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody List<Cart> getAllCartById(@PathVariable Integer getAllCartById)
+    {
+        List<Cart> cart = service.getAllCartById(getAllCartById);
+        return cart;
     }
 
     // GET - read all - find all,

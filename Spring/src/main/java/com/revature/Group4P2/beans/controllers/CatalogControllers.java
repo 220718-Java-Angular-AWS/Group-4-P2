@@ -40,6 +40,23 @@ public class CatalogControllers {
         return optionalCatalog.get();
     }
 
+    @RequestMapping(value = "itemName/{catName}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody Catalog getCatalogByItemNameId(@PathVariable String catName)
+    {
+        Optional<Catalog> optionalCatalog = service.findCatalogByItemName(catName);
+        return optionalCatalog.get();
+    }
+
+    @RequestMapping(value = "catalogDetails/{catId}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody List<Catalog> getCatalogByCatalogDetailsId(@PathVariable Integer catId)
+    {
+        return service.getAllCatalogByCatalogDetailsId(catId);
+    }
+
+
+
     // GET - read all - find all,
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)

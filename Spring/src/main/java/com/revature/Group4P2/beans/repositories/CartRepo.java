@@ -2,7 +2,10 @@ package com.revature.Group4P2.beans.repositories;
 
 import com.revature.Group4P2.entities.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 
 @Repository
 public interface CartRepo extends JpaRepository<Cart, Integer> {
@@ -10,4 +13,8 @@ public interface CartRepo extends JpaRepository<Cart, Integer> {
 
     // NOTE: here make other needed queries
     // helpful site: https://www.tutorialspoint.com/spring_boot_jpa/spring_boot_jpa_native_queries.htm
+
+    @Query("FROM cart WHERE user_user_id =  :userId")
+    public List<Cart> findAllCartByUsersId(@Param("userId") Integer userId);
+
 }

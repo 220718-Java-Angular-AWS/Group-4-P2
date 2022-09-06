@@ -7,6 +7,7 @@ import com.revature.Group4P2.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,11 +30,21 @@ public class CatalogService {
         return repo.findById(id);
     }
 
+
+    public List<Catalog> getAllCatalogByCatalogDetailsId(Integer id)
+    {
+        return repo.findAllCatalogByCatalogDetailsId(id);
+    }
     // get all
     public List<Catalog> getAllCatalog()
     {
         return repo.findAll();
     }
+    public Optional<Catalog> findCatalogByItemName(String name)
+    {
+        return repo.findByCatalogName(name);
+    }
+
 
     // create
     public void createCatalog(Catalog catalog)
@@ -54,4 +65,6 @@ public class CatalogService {
     {
         repo.deleteById(id);
     }
+
+
 }

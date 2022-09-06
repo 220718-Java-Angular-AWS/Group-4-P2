@@ -43,6 +43,14 @@ public class PurchasesController {
         return optionalPurchases.get();
     }
 
+    // custom
+    @RequestMapping(value = "getAllPurchaseById/{getAllPurchaseById}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody List<Purchases> getAllPurchasesById(@PathVariable Integer getAllPurchaseById)
+    {
+        List<Purchases> purchases = service.getAllPurchasesById(getAllPurchaseById);
+        return purchases;
+    }
     // GET - read all - find all,
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
@@ -50,6 +58,7 @@ public class PurchasesController {
     {
         return service.getAllPurchases();
     }
+
 
     // POST - create - save,
     @RequestMapping(method = RequestMethod.POST)

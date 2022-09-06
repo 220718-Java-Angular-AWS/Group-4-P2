@@ -28,6 +28,10 @@ public class PurchaseService {
         return repo.findById(id);
     }
 
+    public List<Purchases> getAllPurchasesById(Integer id)
+    {
+        return repo.findAllPurchasesByUsersId(id);
+    }
     // get all
     public List<Purchases> getAllPurchases()
     {
