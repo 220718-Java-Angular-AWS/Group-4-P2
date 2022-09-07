@@ -42,7 +42,7 @@ public class CartControllers {
 
     @RequestMapping(value = "getAllCartById/{getAllCartById}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody List<Cart> getAllCartById(@PathVariable Integer getAllCartById)
+    public @ResponseBody List<Cart> getAllCartByUserId(@PathVariable Integer getAllCartById)
     {
         List<Cart> cart = service.getAllCartById(getAllCartById);
         return cart;

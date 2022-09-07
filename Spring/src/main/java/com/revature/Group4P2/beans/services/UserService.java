@@ -21,11 +21,11 @@ public class UserService {
     }
 
 
-    @Autowired
-    public UserService(UsersRepo usersRepo)
-    {
-        this.repo = usersRepo;
-    }
+//    @Autowired
+//    public UserService(UsersRepo usersRepo)
+//    {
+//        this.repo = usersRepo;
+//    }
 
     // crud repo
     // get by id
