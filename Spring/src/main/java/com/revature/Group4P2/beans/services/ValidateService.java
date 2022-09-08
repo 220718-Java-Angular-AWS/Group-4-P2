@@ -34,9 +34,13 @@ public class ValidateService {
         if(users.getAddress() == null || !Pattern.matches("^[a-zA-Z0-9 ]*$", users.getAddress())) {
             check = false;
         }
-        if(users.getCardNumber() == null || !Pattern.matches("^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
-                "(?<mastercard>5[1-5][0-9]{14})|" +
-                "(?<discover>6(?:011|5[0-9]{2})[0-9]{12}))$", users.getCardNumber())) {
+
+        // original : "^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
+        //                "(?<mastercard>5[1-5][0-9]{14})|" +
+        //                "(?<discover>6(?:011|5[0-9]{2})[0-9]{12}))$"
+
+
+        if(users.getCardNumber() == null || !Pattern.matches("(?<!\\d)\\d{16}(?!\\d)|(?<!\\d[ _-])(?<!\\d)\\d{4}(?:[_ -]\\d{4}){3}(?![_ -]?\\d)", users.getCardNumber())) {
             check = false;
         }
         return check;

@@ -1,5 +1,5 @@
 package com.revature.Group4P2.beans.controllers;
-import com.revature.Group4P2.DTOS.Login;
+import com.revature.Group4P2.dto.Login;
 import com.revature.Group4P2.beans.services.AuthService;
 import com.revature.Group4P2.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;

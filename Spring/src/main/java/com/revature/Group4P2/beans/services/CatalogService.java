@@ -40,9 +40,11 @@ public class CatalogService {
     {
         return repo.findAll();
     }
-    public Optional<Catalog> findCatalogByItemName(String name)
+    public Optional<Catalog> findCatalogByItemName(String itemName)
     {
-        return repo.findByCatalogName(name);
+        Optional<Catalog> optionalCatalog = repo.findByCatalogName(itemName);
+
+        return optionalCatalog;
     }
 
 

@@ -19,15 +19,8 @@ public class UserService {
         this.repo = userRepo;
         this.validate = validateService;
     }
-
-
-//    @Autowired
-//    public UserService(UsersRepo usersRepo)
-//    {
-//        this.repo = usersRepo;
-//    }
-
     // crud repo
+
     // get by id
     public Optional<Users> getUserById(Integer id)
     {
@@ -41,9 +34,10 @@ public class UserService {
     }
 
     // create
-    public void createUsers(Users users) throws InvalidInputException {
-        if(validate.validateUsers(users)) {
-            repo.save(users);
+    public void createUsers(Users user)throws InvalidInputException
+    {
+        if(validate.validateUsers(user)) {
+            repo.save(user);
         } else {
             throw new InvalidInputException("Failed to create account!");
         }
@@ -60,6 +54,7 @@ public class UserService {
     {
         repo.deleteById(id);
     }
+
 
 
 }

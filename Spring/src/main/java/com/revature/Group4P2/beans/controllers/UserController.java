@@ -13,12 +13,12 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/shoppingusers")
-public class UsersController {
+public class UserController {
 
     private UserService service;
 
     @Autowired
-    public UsersController(UserService userService)
+    public UserController(UserService userService)
     {
 //        System.out.println("MADE INTO USERS CONSTRUCTOR");
         this.service = userService;

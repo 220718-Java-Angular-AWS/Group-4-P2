@@ -16,13 +16,13 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/catalog")
-public class CatalogControllers {
+public class CatalogController {
 
     private CatalogService service;
     private CatalogDetailService catalogDetailService;
 
     @Autowired
-    public CatalogControllers(CatalogService catalogService, CatalogDetailService catalogDetailService)
+    public CatalogController(CatalogService catalogService, CatalogDetailService catalogDetailService)
     {
         this.service = catalogService;
         this.catalogDetailService = catalogDetailService;
@@ -39,11 +39,11 @@ public class CatalogControllers {
         return optionalCatalog.get();
     }
 
-    @RequestMapping(value = "itemName/{catName}", method = RequestMethod.GET)
+    @RequestMapping(value = "itemName/{itemName}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public @ResponseBody Catalog getCatalogByItemNameId(@PathVariable String catName)
+    public @ResponseBody Catalog getCatalogByItemNameId(@PathVariable String itemName)
     {
-        Optional<Catalog> optionalCatalog = service.findCatalogByItemName(catName);
+        Optional<Catalog> optionalCatalog = service.findCatalogByItemName(itemName);
         return optionalCatalog.get();
     }
 

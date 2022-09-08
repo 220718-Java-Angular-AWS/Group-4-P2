@@ -26,13 +26,11 @@ public class Catalog {
     @JsonBackReference(value = "catalogDetails - catalog")
     private CatalogDetails catalogDetails;
 
-    @OneToMany(mappedBy = "catalog", cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "catalog-cart")
-    private List<Cart> cartList;
 
     @OneToMany(mappedBy = "catalog", cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "purchase-catalog")
-    private List<Purchases> purchaseList;
+    @JsonManagedReference(value = "catalog-cartitem")
+    private List<CartItems> cartItems;
+
 
     public Catalog() {
     }
@@ -43,13 +41,13 @@ public class Catalog {
         this.itemPrice = itemPrice;
         this.catalogDetails = catalogDetails;
     }
-    public Catalog( String itemName, Double itemPrice, CatalogDetails catalogDetails) {
+
+    public Catalog(String itemName, Double itemPrice, CatalogDetails catalogDetails) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.catalogDetails = catalogDetails;
     }
 
-    // getters and setters
     public Integer getItemId() {
         return itemId;
     }
@@ -82,22 +80,13 @@ public class Catalog {
         this.catalogDetails = catalogDetails;
     }
 
-    public List<Cart> getCartList() {
-        return cartList;
+    public List<CartItems> getCartItems() {
+        return cartItems;
     }
 
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
+    public void setCartItems(List<CartItems> cartItems) {
+        this.cartItems = cartItems;
     }
-
-    public List<Purchases> getPurchaseList() {
-        return purchaseList;
-    }
-
-    public void setPurchaseList(List<Purchases> purchaseList) {
-        this.purchaseList = purchaseList;
-    }
-
 
     @Override
     public String toString() {
@@ -106,22 +95,7 @@ public class Catalog {
                 ", itemName='" + itemName + '\'' +
                 ", itemPrice=" + itemPrice +
                 ", catalogDetails=" + catalogDetails +
-                ", cartList=" + cartList +
-                ", purchaseList=" + purchaseList +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Catalog catalog = (Catalog) o;
-        return Objects.equals(itemId, catalog.itemId) && Objects.equals(itemName, catalog.itemName) && Objects.equals(itemPrice, catalog.itemPrice) && Objects.equals(catalogDetails, catalog.catalogDetails) && Objects.equals(cartList, catalog.cartList) && Objects.equals(purchaseList, catalog.purchaseList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(itemId, itemName, itemPrice, catalogDetails, cartList, purchaseList);
     }
 }
 

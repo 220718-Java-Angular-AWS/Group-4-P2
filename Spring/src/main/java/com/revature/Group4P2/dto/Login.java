@@ -1,4 +1,4 @@
-package com.revature.Group4P2.DTOS;
+package com.revature.Group4P2.dto;
 
 public class Login {
     private String username;
@@ -28,4 +28,3 @@ public class Login {
         this.password = password;
     }
 }
-

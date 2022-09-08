@@ -16,7 +16,8 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/cart")
-public class CartControllers {
+public class CartController {
+
     private CartService service;
 
     // catalog and user services
@@ -24,14 +25,12 @@ public class CartControllers {
     private UserService userService;
 
     @Autowired
-    public CartControllers(CartService service, CatalogService catalogService, UserService userService) {
+    public CartController(CartService service, CatalogService catalogService, UserService userService) {
         this.service = service;
         this.catalogService = catalogService;
         this.userService = userService;
     }
 
-    //5 crud things:
-    // GET - read by id- find,
     @RequestMapping(value = "/{cartId}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody Cart getCartById(@PathVariable Integer cartId)
@@ -48,6 +47,16 @@ public class CartControllers {
         return cart;
     }
 
+    //getCartByUserIdPurchaseIsFalse
+    @RequestMapping(value = "getCartByUserIdPurchaseIsFalse/{getCartById}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public @ResponseBody Cart getCartByUserIdPurchaseIsFalse(@PathVariable Integer getCartById)
+    {
+        Optional<Cart> optionalCart = service.getCartByUserIdPurchaseIsFalse(getCartById);
+        return optionalCart.get();
+    }
+
+
     // GET - read all - find all,
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
@@ -55,17 +64,17 @@ public class CartControllers {
     {
         return service.getAllCart();
     }
+
     // POST - create - save,
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void createCart(@RequestBody Cart cart)
     {
-        Optional<Catalog> optionalCatalog = catalogService.getCatalogById(cart.getCatalog().getItemId());
-        Optional<Users> optionalUsers = userService.getUserById(cart.getUser().getId());
 
-        if(optionalCatalog.isPresent() && optionalUsers.isPresent()) {
-            cart.setCatalog(catalogService.getCatalogById(cart.getCatalog().getItemId()).get());
-            cart.setUser(userService.getUserById(cart.getUser().getId()).get());
+        Optional<Users> optionalUsers = userService.getUserById(cart.getUser().getUserId());
+
+        if(optionalUsers.isPresent()) {
+            cart.setUser(userService.getUserById(cart.getUser().getUserId()).get());
             service.createCart(cart);
         }
         else
@@ -82,7 +91,17 @@ public class CartControllers {
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public void updateCart(@RequestBody Cart cart)
     {
-        service.updateCart(cart);
+        Optional<Users> optionalUsers = userService.getUserById(cart.getUser().getUserId());
+
+        if(optionalUsers.isPresent()) {
+            cart.setUser(userService.getUserById(cart.getUser().getUserId()).get());
+            service.updateCart(cart);
+        }
+        else
+        {
+            // throw exception later on
+            System.out.println("CART ITEM NOT UPDATED");
+        }
     }
     // DELETE - delete - delete
     @RequestMapping(value = "/{cartId}", method = RequestMethod.DELETE)
@@ -94,11 +113,11 @@ public class CartControllers {
         {
             Cart cart = optionalCart.get();
             cart.setUser(null);
-            cart.setCatalog(null);
             service.updateCart(cart);
             service.deleteCartById(cartId);
         }
 
     }
+
 
 }

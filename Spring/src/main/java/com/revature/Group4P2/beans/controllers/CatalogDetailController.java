@@ -14,11 +14,11 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(value = "/catalogdetails")
-public class CatalogDetailsController {
+public class CatalogDetailController {
     private CatalogDetailService service;
 
     @Autowired
-    public CatalogDetailsController(CatalogDetailService catalogDetailService)
+    public CatalogDetailController(CatalogDetailService catalogDetailService)
     {
         this.service = catalogDetailService;
     }
@@ -63,4 +63,5 @@ public class CatalogDetailsController {
     {
         service.deleteCatalogDetailById(catdetId);
     }
+
 }

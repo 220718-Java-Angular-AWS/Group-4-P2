@@ -2,6 +2,7 @@ package com.revature.Group4P2.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,70 +13,75 @@ public class Cart {
     // columns and attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "item_id")
-    private Integer itemId;
+    @Column(name = "cart_id")
+    private Integer cartId;
 
     @Column
-    private Integer quantity;
+    private String date;
 
 
-    // foreign key for item_id which is from catalog
-    @ManyToOne( cascade = CascadeType.ALL)
-    @JsonBackReference(value = "catalog-cart")
-    private Catalog catalog;
+    @Column
+    private Boolean purchasedCart = false;
+//    @Column
+//    private Integer quantity;
+
+
+
 
     // foreign key userID which is from ShoppingUser
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "user-cart")
     private Users user;
 
-    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "purchase-cart")
-    private List<Purchases> purchasesList;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    @JsonManagedReference(value = "cart-cartitem")
+    private List<CartItems> cartItems;
 
-
-    // constructors
     public Cart() {
     }
 
-    public Cart(Integer itemId, Integer quantity, Catalog catalog, Users user) {
-        this.itemId = itemId;
-        this.quantity = quantity;
-        this.catalog = catalog;
+    public Cart(Integer cartId, String date, Boolean purchasedCart, Users user) {
+        this.cartId = cartId;
+        this.date = date;
+        this.purchasedCart = purchasedCart;
         this.user = user;
     }
 
-    public Cart( Integer quantity, Catalog catalog, Users user) {
-        this.quantity = quantity;
-        this.catalog = catalog;
+    public Cart(String date, Boolean purchasedCart, Users user) {
+        this.date = date;
+        this.purchasedCart = purchasedCart;
         this.user = user;
     }
 
-    // getters and setters
-
-
-    public Integer getItemId() {
-        return itemId;
+    public Cart(String date, Users user) {
+        this.date = date;
+        this.purchasedCart = false;
+        this.user = user;
     }
 
-    public void setItemId(Integer itemId) {
-        this.itemId = itemId;
+
+    public Integer getCartId() {
+        return cartId;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public void setCartId(Integer cartId) {
+        this.cartId = cartId;
     }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
+    public String getDate() {
+        return date;
     }
 
-    public Catalog getCatalog() {
-        return catalog;
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public void setCatalog(Catalog catalog) {
-        this.catalog = catalog;
+    public Boolean getPurchasedCart() {
+        return purchasedCart;
+    }
+
+    public void setPurchasedCart(Boolean purchasedCart) {
+        this.purchasedCart = purchasedCart;
     }
 
     public Users getUser() {
@@ -86,36 +92,22 @@ public class Cart {
         this.user = user;
     }
 
-    public List<Purchases> getPurchasesList() {
-        return purchasesList;
+    public List<CartItems> getCartItems() {
+        return cartItems;
     }
 
-    public void setPurchasesList(List<Purchases> purchasesList) {
-        this.purchasesList = purchasesList;
+    public void setCartItems(List<CartItems> cartItems) {
+        this.cartItems = cartItems;
     }
 
     @Override
     public String toString() {
         return "Cart{" +
-                "itemId=" + itemId +
-                ", quantity=" + quantity +
-                ", catalog=" + catalog +
+                "cartId=" + cartId +
+                ", date='" + date + '\'' +
+                ", purchasedCart=" + purchasedCart +
                 ", user=" + user +
-                ", purchasesList=" + purchasesList +
+                ", cartItems=" + cartItems +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cart cart = (Cart) o;
-        return Objects.equals(itemId, cart.itemId) && Objects.equals(quantity, cart.quantity) && Objects.equals(catalog, cart.catalog) && Objects.equals(user, cart.user) && Objects.equals(purchasesList, cart.purchasesList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(itemId, quantity, catalog, user, purchasesList);
-    }
-
 }
