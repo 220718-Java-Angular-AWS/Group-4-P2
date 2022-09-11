@@ -13,7 +13,7 @@ import { ServerComponent } from './server/server.component';
 import { FormsModule } from '@angular/forms';
 import { UsersService } from './users.service';
 import { LoginService } from './login.service';
-import { CatalogDetailsService } from './catalogDetails.service';
+import { catalogDetailsService } from './catalogDetails.service';
 import { CatalogService } from './catalog.service';
 import { CartService } from './cart.service';
 
@@ -34,7 +34,7 @@ import { CartService } from './cart.service';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [UsersService, LoginService, CatalogDetailsService, CatalogService, CartService],
+  providers: [UsersService, LoginService, catalogDetailsService, CatalogService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

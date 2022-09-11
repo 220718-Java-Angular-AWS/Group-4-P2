@@ -9,21 +9,11 @@ import { UsersService } from '../users.service';
 })
 export class NavigationComponent implements OnInit {
 public  users:object = [];
-  constructor(private _UsersService: UsersService) { 
-    this.users = _UsersService.
-  }
-
 
 
   ngOnInit(): void {
     
   }
-
 }
 
-export class EmployeeNamesComponent {
-    public employees:object =[];
-    constructor(private _employeeService : EmployeeService){
-            this.employees = _employeeService.getEmployees();
-  }
-}   
+   
