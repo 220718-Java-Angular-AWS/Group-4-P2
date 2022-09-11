@@ -6,8 +6,8 @@ import { CartItems } from './cart-items';
 @Injectable({
   providedIn: 'root'
 })
-export class cartitems {
-  baseurl = 'http://localhost:4200/cartitems/';
+export class CartItemsService {
+  baseurl = 'http://localhost:8080/cartitems/';
   
   constructor(private http: HttpClient) { }
 

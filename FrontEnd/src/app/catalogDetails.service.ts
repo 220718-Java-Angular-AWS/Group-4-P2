@@ -8,7 +8,7 @@ import { CatalogDetails } from './catalogDetails';
   providedIn: 'root'
 })
 export class catalogDetailsService {
-  baseurl = 'http://localhost:4200/catalogDetails/';
+  baseurl = 'http://localhost:8080/catalogDetails/';
   
   constructor(private http: HttpClient) { }
 
