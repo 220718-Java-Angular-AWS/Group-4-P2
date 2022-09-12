@@ -1,5 +1,6 @@
 package com.revature.Group4P2.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -23,6 +24,8 @@ public class Purchases {
     @Column(name = "total_amount")
     private Double totalAmount;
 
+    @Column
+    private String size;
 
     // foreign key objects
     @ManyToOne(cascade = CascadeType.ALL)
@@ -50,6 +53,7 @@ public class Purchases {
         this.catalog = catalog;
         this.user = user;
         this.cart = cart;
+        this.size = size;
     }
 
     public Purchases( String date, Integer quantityPurchased, Double totalAmount, Catalog catalog, Users user, Cart cart) {
@@ -59,6 +63,7 @@ public class Purchases {
         this.catalog = catalog;
         this.user = user;
         this.cart = cart;
+        this.size = size;
     }
 
 
@@ -121,6 +126,14 @@ public class Purchases {
         this.user = user;
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
     @Override
     public String toString() {
         return "Purchases{" +
@@ -131,6 +144,7 @@ public class Purchases {
                 ", cart=" + cart +
                 ", catalog=" + catalog +
                 ", user=" + user +
+                ", size=" +
                 '}';
     }
 
@@ -139,11 +153,11 @@ public class Purchases {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Purchases purchases = (Purchases) o;
-        return Objects.equals(purchaseId, purchases.purchaseId) && Objects.equals(date, purchases.date) && Objects.equals(quantityPurchased, purchases.quantityPurchased) && Objects.equals(totalAmount, purchases.totalAmount) && Objects.equals(cart, purchases.cart) && Objects.equals(catalog, purchases.catalog) && Objects.equals(user, purchases.user);
+        return Objects.equals(purchaseId, purchases.purchaseId) && Objects.equals(date, purchases.date) && Objects.equals(quantityPurchased, purchases.quantityPurchased) && Objects.equals(totalAmount, purchases.totalAmount) && Objects.equals(size, purchases.size) && Objects.equals(cart, purchases.cart) && Objects.equals(catalog, purchases.catalog) && Objects.equals(user, purchases.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(purchaseId, date, quantityPurchased, totalAmount, cart, catalog, user);
+        return Objects.hash(purchaseId, date, quantityPurchased, totalAmount, size, cart, catalog, user);
     }
 }

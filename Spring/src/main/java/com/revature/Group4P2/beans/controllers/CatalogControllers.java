@@ -5,7 +5,7 @@ import com.revature.Group4P2.beans.services.CatalogService;
 import com.revature.Group4P2.entities.Cart;
 import com.revature.Group4P2.entities.Catalog;
 import com.revature.Group4P2.entities.CatalogDetails;
-import jdk.nashorn.api.scripting.ScriptObjectMirror;
+//import jdk.nashorn.api.scripting.ScriptObjectMirror;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;

@@ -21,6 +21,9 @@ public class Catalog {
     @Column(name = "item_price")
     private Double itemPrice;
 
+    @Column(name = "size")
+    private String size;
+
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "catalogDetails - catalog")
@@ -42,11 +45,13 @@ public class Catalog {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.catalogDetails = catalogDetails;
+        this.size = size;
     }
     public Catalog( String itemName, Double itemPrice, CatalogDetails catalogDetails) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
         this.catalogDetails = catalogDetails;
+        this.size = size;
     }
 
     // getters and setters
@@ -98,6 +103,13 @@ public class Catalog {
         this.purchaseList = purchaseList;
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
 
     @Override
     public String toString() {
@@ -108,6 +120,7 @@ public class Catalog {
                 ", catalogDetails=" + catalogDetails +
                 ", cartList=" + cartList +
                 ", purchaseList=" + purchaseList +
+                ", size=" +
                 '}';
     }
 
@@ -116,13 +129,11 @@ public class Catalog {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Catalog catalog = (Catalog) o;
-        return Objects.equals(itemId, catalog.itemId) && Objects.equals(itemName, catalog.itemName) && Objects.equals(itemPrice, catalog.itemPrice) && Objects.equals(catalogDetails, catalog.catalogDetails) && Objects.equals(cartList, catalog.cartList) && Objects.equals(purchaseList, catalog.purchaseList);
+        return Objects.equals(itemId, catalog.itemId) && Objects.equals(itemName, catalog.itemName) && Objects.equals(itemPrice, catalog.itemPrice) && Objects.equals(catalogDetails, catalog.catalogDetails) && Objects.equals(cartList, catalog.cartList) && Objects.equals(size, catalog.size) && Objects.equals(purchaseList, catalog.purchaseList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemId, itemName, itemPrice, catalogDetails, cartList, purchaseList);
+        return Objects.hash(itemId, itemName, itemPrice, catalogDetails, size, cartList, purchaseList);
     }
 }
-
-

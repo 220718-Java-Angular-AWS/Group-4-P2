@@ -18,6 +18,9 @@ public class Cart {
     @Column
     private Integer quantity;
 
+    @Column
+    private String size;
+
 
     // foreign key for item_id which is from catalog
     @ManyToOne( cascade = CascadeType.ALL)
@@ -33,22 +36,23 @@ public class Cart {
     @JsonManagedReference(value = "purchase-cart")
     private List<Purchases> purchasesList;
 
-
     // constructors
     public Cart() {
     }
 
-    public Cart(Integer itemId, Integer quantity, Catalog catalog, Users user) {
+    public Cart(Integer itemId, Integer quantity, Catalog catalog, Users user, String size) {
         this.itemId = itemId;
         this.quantity = quantity;
         this.catalog = catalog;
         this.user = user;
+        this.size = size;
     }
 
-    public Cart( Integer quantity, Catalog catalog, Users user) {
+    public Cart( Integer quantity, Catalog catalog, Users user, String size) {
         this.quantity = quantity;
         this.catalog = catalog;
         this.user = user;
+        this.size = size;
     }
 
     // getters and setters
@@ -94,6 +98,14 @@ public class Cart {
         this.purchasesList = purchasesList;
     }
 
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
     @Override
     public String toString() {
         return "Cart{" +
@@ -102,6 +114,7 @@ public class Cart {
                 ", catalog=" + catalog +
                 ", user=" + user +
                 ", purchasesList=" + purchasesList +
+                ", size=" +
                 '}';
     }
 
@@ -110,12 +123,12 @@ public class Cart {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cart cart = (Cart) o;
-        return Objects.equals(itemId, cart.itemId) && Objects.equals(quantity, cart.quantity) && Objects.equals(catalog, cart.catalog) && Objects.equals(user, cart.user) && Objects.equals(purchasesList, cart.purchasesList);
+        return Objects.equals(itemId, cart.itemId) && Objects.equals(quantity, cart.quantity) && Objects.equals(catalog, cart.catalog) && Objects.equals(size, cart.size) && Objects.equals(user, cart.user) && Objects.equals(purchasesList, cart.purchasesList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(itemId, quantity, catalog, user, purchasesList);
+        return Objects.hash(itemId, quantity, catalog, size, user, purchasesList);
     }
 
 }

@@ -13,7 +13,4 @@ public class Group4P2Application {
 		SpringApplication.run(Group4P2Application.class, args);
 		System.out.println("random");
 	}
-
-
-
 }
