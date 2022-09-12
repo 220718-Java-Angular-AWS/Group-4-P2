@@ -27,7 +27,8 @@ public class ValidateService {
         }
 
         // original: ^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$
-        if(users.getUsername() == null || !Pattern.matches("^(?=.*\\d)(?=.*[a-z]).{4,20}$", users.getUsername())) {
+        // second try : || !Pattern.matches("^(?=.*\\d)(?=.*[a-z]).{4,20}$", users.getUsername())
+        if(users.getUsername() == null ) {
             check = false;
         }
 

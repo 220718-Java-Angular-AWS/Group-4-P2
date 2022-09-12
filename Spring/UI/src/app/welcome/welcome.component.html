@@ -1,0 +1,32 @@
+<p>welcome works!</p>
+
+<h1> Welcome to ...</h1>
+    
+<h3> Sign Up</h3>
+<label for="firstName"> First Name:  </label>
+<input type="text" id = "firstName" [(ngModel)] = "firstName"> 
+<br>
+<label for="lastName"> Last Name:  </label>
+<input type="text" id = "lastName" [(ngModel)] = "lastName"> 
+<br>
+<label for="userName"> Username:  </label>
+<input type="text" id = "userName" [(ngModel)] = "userName"> 
+<br>
+<label for="email"> email:  </label>
+<input type="text" id = "email" [(ngModel)] = "email"> 
+<br>
+<label for="password"> Password:  </label>
+<input type="password" id = "password" [(ngModel)] = "password">
+<br>
+<label for="address"> Address:  </label>
+<input type="address" id = "address" [(ngModel)] = "address">
+<br>
+<label for="cardNumber"> Card Number:  </label>
+<input type="text" id = "cardNumber" [(ngModel)] = "cardNumber"> 
+<br>
+<p> Sign Up </p>
+<p> Or if existing user Login </p>
+<button (click) = "onSignUp()"> Sign Up </button>
+<button [routerLink]= "['/login']"> Login </button>
+
+

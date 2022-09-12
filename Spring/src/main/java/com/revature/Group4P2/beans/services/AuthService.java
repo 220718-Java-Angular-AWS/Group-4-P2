@@ -17,6 +17,7 @@ public class AuthService {
     }
 
     public Users authenticate(String username, String password) throws AccessDeniedException {
+        System.out.println("MADE INTO LOGIN SERVICE METHOD");
         Optional<Users> result = repo.findByUsername(username);
         if(result.isPresent() && result.get().getPassword().equals(password)) {
             return result.get();
