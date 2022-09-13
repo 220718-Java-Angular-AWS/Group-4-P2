@@ -7,6 +7,10 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { RouterModule, Routes } from '@angular/router';
+import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
+import { CheckoutcartComponent } from './checkoutcart/checkoutcart.component';
 
 
 @NgModule({
@@ -14,13 +18,16 @@ import { LoginComponent } from './login/login.component';
     AppComponent,
     WelcomeComponent,
     NavBarComponent,
-    LoginComponent
+    LoginComponent,
+    OrderhistoryComponent,
+    CheckoutcartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
