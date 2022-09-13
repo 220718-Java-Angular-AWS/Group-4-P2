@@ -1,0 +1,12 @@
+
+<app-search-bar></app-search-bar>
+
+<div class="item-wrapper">
+    <div 
+        *ngFor="let item of searchBarService.result"
+        class="card">
+        <span>{{item.name}}</span>
+        <img src="https://cdn.pixabay.com/photo/2016/11/23/06/57/isolated-t-shirt-1852114_1280.png" alt="">
+        <span>Cool {{item.name}}</span>
+    </div>    
+</div>
