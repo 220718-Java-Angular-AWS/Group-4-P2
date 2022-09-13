@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Users } from '../user';
 import { UsersService } from '../users.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-personal-info',
@@ -11,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./personal-info.component.css']
 })
 export class PersonalInfoComponent implements OnInit {
-  // router: Router;
+ // router: Router;
 
   _userService: UsersService;
   user: Users = {id: 0,
@@ -47,8 +48,7 @@ export class PersonalInfoComponent implements OnInit {
           this.user = data;
         })
     }
-
-
+  
   displayProfileInfo() {
     
   }
@@ -106,6 +106,11 @@ cart(): void {
   }
 
   //view payInfo
+  pastPurchases(): void {
+    //TODO: get home component
+    // const navigationDestination: string[] = ['/home'];
+    // this.router.navigate(navigationDestination, {replaceUrl:true});
+  }
   payInfo(): void {
     //TODO: make payInfo component
     // const navigationDestination: string[] = ['/payInfo'];

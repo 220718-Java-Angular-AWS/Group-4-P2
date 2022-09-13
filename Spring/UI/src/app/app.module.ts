@@ -11,6 +11,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { RouterModule, Routes } from '@angular/router';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { CheckoutcartComponent } from './checkoutcart/checkoutcart.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { CheckoutcartComponent } from './checkoutcart/checkoutcart.component';
     NavBarComponent,
     LoginComponent,
     OrderhistoryComponent,
-    CheckoutcartComponent
+    CheckoutcartComponent,
+    PersonalInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -53,3 +53,15 @@ button.btn2{
     line-height:1.1em;
     font-size:1em;
 }
+
+.nav-bar{
+    justify-content: space-between
+}
+
+span {
+    padding-right: 10rem;
+}
+
+.header{ margin-right: 150px;
+
+}

@@ -15,6 +15,10 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
-    this.router.navigate(['/welcome-compoent']);
+    this.router.navigate(['/nav-bar']);
   }
+
+  // ngOnInit(): void {
+  //   this.router.navigate(['/welcome-compoent']);
+  // }
 }
