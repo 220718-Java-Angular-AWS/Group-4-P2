@@ -1,3 +1,11 @@
+.nav-bar{
+    justify-content: space-between
+}
+
+a {
+    padding: 10px;
+}
+
 h1 {
     text-align: center;
 }
@@ -32,3 +40,11 @@ label {
     margin-left: 10px;
     
   }
+
+span {
+    padding-right: 10rem;
+}
+
+.header{ margin-right: 150px;
+
+}

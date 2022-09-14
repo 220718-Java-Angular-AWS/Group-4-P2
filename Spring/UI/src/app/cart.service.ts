@@ -34,10 +34,6 @@ export class CartService {
   }
   GetCartByIdFalseCart(cartId: number): Observable<Cart> {
     return this.http.get<Cart>(this.baseurl + 'getCartByUserIdPurchaseIsFalse/' + cartId)
-      .pipe(
-        retry(1),
-        catchError(this.errorHandl)
-      )
   }
   // GET ALL
   Getcart(): Observable<Cart[]> {

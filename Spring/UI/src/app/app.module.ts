@@ -9,6 +9,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { CatalogDisplayComponent } from './catalog-display/catalog-display.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { RouterModule, Routes } from '@angular/router';
+import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
+import { CheckoutcartComponent } from './checkoutcart/checkoutcart.component';
+import { PersonalInfoComponent } from './personal-info/personal-info.component';
 
 
 @NgModule({
@@ -19,13 +24,17 @@ import { CatalogDisplayComponent } from './catalog-display/catalog-display.compo
     LoginComponent,
     SearchBarComponent,
     CatalogDisplayComponent
+    OrderhistoryComponent,
+    CheckoutcartComponent,
+    PersonalInfoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

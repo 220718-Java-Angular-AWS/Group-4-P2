@@ -1,32 +1,50 @@
-<p>welcome works!</p>
+<h1> Welcome to Trader Clothes! <h1>
 
-<h1> Welcome to ...</h1>
-    
-<h3> Sign Up</h3>
-<label for="firstName"> First Name:  </label>
-<input type="text" id = "firstName" [(ngModel)] = "firstName"> 
 <br>
-<label for="lastName"> Last Name:  </label>
-<input type="text" id = "lastName" [(ngModel)] = "lastName"> 
-<br>
-<label for="userName"> Username:  </label>
-<input type="text" id = "userName" [(ngModel)] = "userName"> 
-<br>
-<label for="email"> email:  </label>
-<input type="text" id = "email" [(ngModel)] = "email"> 
-<br>
-<label for="password"> Password:  </label>
-<input type="password" id = "password" [(ngModel)] = "password">
-<br>
-<label for="address"> Address:  </label>
-<input type="address" id = "address" [(ngModel)] = "address">
-<br>
-<label for="cardNumber"> Card Number:  </label>
-<input type="text" id = "cardNumber" [(ngModel)] = "cardNumber"> 
-<br>
-<p> Sign Up </p>
-<p> Or if existing user Login </p>
-<button (click) = "onSignUp()"> Sign Up </button>
-<button [routerLink]= "['/login']"> Login </button>
+
+<h3> Enter New User Information</h3>
+
+<div>
+<label for="firstName"> 
+    First Name:  <input type="text" id = "firstName" [(ngModel)] = "firstName"> 
+</label>
+
+<label for="lastName"> 
+    Last Name:  <input type="text" id = "lastName" [(ngModel)] = "lastName"> 
+</label>
+
+<label for="userName"> 
+    Username:  <input type="text" id = "userName" [(ngModel)] = "userName"> 
+</label>
+
+<label for="email"> 
+    Email:  <input type="text" id = "email" [(ngModel)] = "email"> 
+</label>
+
+<label for="password"> 
+    Password:  <input type="password" id = "password" [(ngModel)] = "password">
+</label>
+
+<label for="address"> 
+    Address:  <input type="address" id = "address" [(ngModel)] = "address">
+</label>
+
+<label for="cardNumber"> 
+    Card Number:  <input type="text" id = "cardNumber" [(ngModel)] = "cardNumber"> 
+</label>
+
+</div>
+
+<div class = text>
+    <p>
+        Create Account     <button (click) = "onSignUp()"> Create Account </button>
+    </p>
+
+    <p>
+        Already have an Accoutn?    <button [routerLink]= "['/login']"> Login </button>
+    <p>
+</div>
+
+
 
 
