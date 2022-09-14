@@ -10,7 +10,7 @@ import { CreateUsers } from './createUser';
 })
 
 export class UsersService {
-  baseurl = 'http://localhost:8080/shoppingusers/';
+  baseurl = 'http://localhost:8080/shoppingusers';
   
   constructor(private http: HttpClient) { }
 
@@ -28,7 +28,7 @@ export class UsersService {
     return this.http.post<CreateUsers>(this.baseurl , data, this.httpOptions)
     .pipe(
       retry(1),
-      catchError(this.errorHandl),
+      catchError(this.errorHandl)
 
     )
     

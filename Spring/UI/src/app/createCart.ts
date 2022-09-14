@@ -1,7 +1,7 @@
 import { Users } from "./user";
-export interface Cart {
-    cartId: number;
+
+export interface CreateCart {
     date: String;
     purchasedCart: boolean;
-    cartUserId: number;
+    user: Users
 }

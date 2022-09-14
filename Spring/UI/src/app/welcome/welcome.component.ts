@@ -10,7 +10,7 @@ import { Route, Router } from '@angular/router';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent{
-
+  // imagePath: string = "src\assets\img\profile.jpg"
   service: UsersService;
   router: Router;
   constructor(userService: UsersService, router:Router) {

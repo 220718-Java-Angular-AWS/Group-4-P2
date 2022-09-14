@@ -1,10 +1,10 @@
 export interface Users {
-    id: number;
+    userId: number;
     firstName: String;
     lastName: String;
     email: String;
     password: String;
     username: String;
     address: String;
-    cardNumber: number;  
+    cardNumber: number;
 }
