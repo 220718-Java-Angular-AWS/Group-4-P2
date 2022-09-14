@@ -18,6 +18,7 @@ public class CorsFilter extends OncePerRequestFilter {
         resp.setHeader("Access-Control-Allow-Origin", "*");
         resp.setHeader("Access-Control-Allow-Methods", "*");
         resp.setHeader("Access-Control-Allow-Headers", "*");
+
         chain.doFilter(req, resp);
     }
 }

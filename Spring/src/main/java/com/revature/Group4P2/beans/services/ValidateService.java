@@ -19,18 +19,29 @@ public class ValidateService {
         if (users.getEmail() == null || !Pattern.matches("^[A-Za-z0-9\\.\\-_]+@[A-Za-z0-9\\-]+\\.[A-Za-z]{2,5}$", users.getEmail())) {
             check = false;
         }
-        if(users.getPassword() == null || !Pattern.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", users.getPassword())) {
+
+        // ^(?=.*\d)(?=.*[a-z]).{4,20}$
+        // original didnt work : (?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$
+        if(users.getPassword() == null || !Pattern.matches("^(?=.*\\d)(?=.*[a-z]).{4,20}$", users.getPassword())) {
             check = false;
         }
-        if(users.getUsername() == null || !Pattern.matches("^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$", users.getUsername())) {
+
+        // original: ^(?=[a-zA-Z0-9._]{8,20}$)(?!.*[_.]{2})[^_.].*[^_.]$
+        // second try : || !Pattern.matches("^(?=.*\\d)(?=.*[a-z]).{4,20}$", users.getUsername())
+        if(users.getUsername() == null ) {
             check = false;
         }
+
         if(users.getAddress() == null || !Pattern.matches("^[a-zA-Z0-9 ]*$", users.getAddress())) {
             check = false;
         }
-        if(users.getCardNumber() == null || !Pattern.matches("^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
-                "(?<mastercard>5[1-5][0-9]{14})|" +
-                "(?<discover>6(?:011|5[0-9]{2})[0-9]{12}))$", users.getCardNumber())) {
+
+        // original : "^(?:(?<visa>4[0-9]{12}(?:[0-9]{3})?)|" +
+        //                "(?<mastercard>5[1-5][0-9]{14})|" +
+        //                "(?<discover>6(?:011|5[0-9]{2})[0-9]{12}))$"
+
+
+        if(users.getCardNumber() == null || !Pattern.matches("(?<!\\d)\\d{16}(?!\\d)|(?<!\\d[ _-])(?<!\\d)\\d{4}(?:[_ -]\\d{4}){3}(?![_ -]?\\d)", users.getCardNumber())) {
             check = false;
         }
         return check;

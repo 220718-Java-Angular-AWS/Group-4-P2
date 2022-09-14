@@ -26,6 +26,16 @@ public class CartService {
         return repo.findById(id);
     }
 
+    public List<Cart> getAllCartById(Integer id)
+    {
+        return repo.findAllCartByUsersId(id);
+    }
+
+    public Optional<Cart>  getCartByUserIdPurchaseIsFalse(Integer id )
+    {
+        return repo.findCartByUserIdPurchaseIsFalse(id);
+    }
+
     // get all
     public List<Cart> getAllCart()
     {

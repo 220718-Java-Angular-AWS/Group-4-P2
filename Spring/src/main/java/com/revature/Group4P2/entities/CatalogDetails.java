@@ -8,6 +8,8 @@ import java.util.Objects;
 
 @Entity(name = "catalog_details")
 public class CatalogDetails {
+
+    // columns and attributes
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "catalog_details_id")
@@ -22,7 +24,7 @@ public class CatalogDetails {
     @JsonManagedReference(value = "catalogDetails - catalog")
     private List<Catalog> catalogList;
 
-    // constructors
+
     public CatalogDetails() {
     }
 
@@ -31,12 +33,9 @@ public class CatalogDetails {
         this.catalogDetailsGroup = catalogDetailsGroup;
     }
 
-    public CatalogDetails( String catalogDetailsGroup) {
+    public CatalogDetails(String catalogDetailsGroup) {
         this.catalogDetailsGroup = catalogDetailsGroup;
     }
-
-    // getters and setters
-
 
     public Integer getCatalogDetailsId() {
         return catalogDetailsId;
@@ -69,19 +68,5 @@ public class CatalogDetails {
                 ", catalogDetailsGroup='" + catalogDetailsGroup + '\'' +
                 '}';
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CatalogDetails that = (CatalogDetails) o;
-        return Objects.equals(catalogDetailsId, that.catalogDetailsId) && Objects.equals(catalogDetailsGroup, that.catalogDetailsGroup) && Objects.equals(catalogList, that.catalogList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(catalogDetailsId, catalogDetailsGroup, catalogList);
-    }
-
 
 }

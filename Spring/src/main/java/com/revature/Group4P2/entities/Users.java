@@ -2,16 +2,16 @@ package com.revature.Group4P2.entities;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "shopping_user")
 public class Users {
+    // columns and variables
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer userId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -36,15 +36,13 @@ public class Users {
 
 
     // WHEN THESE ARE COMMENTED OUT IT WILL POST
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL) // name of the shoppinguser object in purchase class
-    @JsonManagedReference(value = "user-purchases")
-    private List<Purchases> purchases ;
-//
     // foreign key for cart
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "user-cart")
     private List<Cart> cart ;
+
+
 
     // constructors
 
@@ -52,8 +50,8 @@ public class Users {
     public Users() {
     }
 
-    public Users(Integer id, String firstName, String lastName, String email, String password, String username, String address, String cardNumber) {
-        this.id = id;
+    public Users(Integer userId, String firstName, String lastName, String email, String password, String username, String address, String cardNumber) {
+        this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -61,10 +59,9 @@ public class Users {
         this.username = username;
         this.address = address;
         this.cardNumber = cardNumber;
-
-
     }
-    public Users( String firstName, String lastName, String email, String password, String username, String address, String cardNumber) {
+
+    public Users(String firstName, String lastName, String email, String password, String username, String address, String cardNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -72,17 +69,14 @@ public class Users {
         this.username = username;
         this.address = address;
         this.cardNumber = cardNumber;
-
     }
 
-    // getters and setters
-
-    public Integer getId() {
-        return id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -141,14 +135,6 @@ public class Users {
         this.cardNumber = cardNumber;
     }
 
-    public List<Purchases> getPurchases() {
-        return purchases;
-    }
-
-    public void setPurchases(List<Purchases> purchases) {
-        this.purchases = purchases;
-    }
-
     public List<Cart> getCart() {
         return cart;
     }
@@ -160,7 +146,7 @@ public class Users {
     @Override
     public String toString() {
         return "Users{" +
-                "id=" + id +
+                "userId=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -168,19 +154,7 @@ public class Users {
                 ", username='" + username + '\'' +
                 ", address='" + address + '\'' +
                 ", cardNumber='" + cardNumber + '\'' +
+                ", cart=" + cart +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Users users = (Users) o;
-        return Objects.equals(id, users.id) && Objects.equals(firstName, users.firstName) && Objects.equals(lastName, users.lastName) && Objects.equals(email, users.email) && Objects.equals(password, users.password) && Objects.equals(username, users.username) && Objects.equals(address, users.address) && Objects.equals(cardNumber, users.cardNumber) && Objects.equals(purchases, users.purchases) && Objects.equals(cart, users.cart);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password, username, address, cardNumber, purchases, cart);
     }
 }

@@ -9,6 +9,7 @@ import java.util.Objects;
 
 @Entity(name = "catalog")
 public class Catalog {
+    // columns and variables
     @Id
     @Column(name = "item_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,42 +21,39 @@ public class Catalog {
     @Column(name = "item_price")
     private Double itemPrice;
 
-//    private Integer Inventory;
-
-//    @Column(name = "catalog_group")
-//    private String catalogGroup;
-
+    @Column(name="image")
+    private String imageURL;
+    
+    @Transient
+    private Integer catalodDetailId;
+    
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "catalogDetails - catalog")
     private CatalogDetails catalogDetails;
 
-    @OneToMany(mappedBy = "catalog", cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "catalog-cart")
-    private List<Cart> cartList;
 
     @OneToMany(mappedBy = "catalog", cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "purchase-catalog")
-    private List<Purchases> purchaseList;
+    @JsonManagedReference(value = "catalog-cartitem")
+    private List<CartItems> cartItems;
+
 
     public Catalog() {
     }
 
-    public Catalog(Integer itemId, String itemName, Double itemPrice, CatalogDetails catalogDetails) {
+    public Catalog(Integer itemId, String itemName, Double itemPrice, String imageURL, CatalogDetails catalogDetails) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-//        this.catalogGroup = catalogGroup;
+        this.imageURL = imageURL;
         this.catalogDetails = catalogDetails;
     }
-    public Catalog( String itemName, Double itemPrice, CatalogDetails catalogDetails) {
+
+    public Catalog(String itemName, Double itemPrice, String imageURL, CatalogDetails catalogDetails) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
-//        this.catalogGroup = catalogGroup;
+        this.imageURL= imageURL;
         this.catalogDetails = catalogDetails;
     }
-
-    // getters and setters
-
 
     public Integer getItemId() {
         return itemId;
@@ -81,14 +79,6 @@ public class Catalog {
         this.itemPrice = itemPrice;
     }
 
-//    public String getCatalogGroup() {
-//        return catalogGroup;
-//    }
-//
-//    public void setCatalogGroup(String catalogGroup) {
-//        this.catalogGroup = catalogGroup;
-//    }
-
     public CatalogDetails getCatalogDetails() {
         return catalogDetails;
     }
@@ -97,20 +87,28 @@ public class Catalog {
         this.catalogDetails = catalogDetails;
     }
 
-    public List<Cart> getCartList() {
-        return cartList;
+    public List<CartItems> getCartItems() {
+        return cartItems;
     }
 
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
+    public Integer getCatalodDetailId() {
+        return catalodDetailId;
     }
 
-    public List<Purchases> getPurchaseList() {
-        return purchaseList;
+    public void setCatalodDetailId(Integer catalodDetailId) {
+        this.catalodDetailId = catalodDetailId;
     }
 
-    public void setPurchaseList(List<Purchases> purchaseList) {
-        this.purchaseList = purchaseList;
+    public void setCartItems(List<CartItems> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     @Override
@@ -119,24 +117,8 @@ public class Catalog {
                 "itemId=" + itemId +
                 ", itemName='" + itemName + '\'' +
                 ", itemPrice=" + itemPrice +
-//                ", catalogGroup='" + catalogGroup + '\'' +
                 ", catalogDetails=" + catalogDetails +
-                ", cartList=" + cartList +
-                ", purchaseList=" + purchaseList +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Catalog catalog = (Catalog) o;
-        return Objects.equals(itemId, catalog.itemId) && Objects.equals(itemName, catalog.itemName) && Objects.equals(itemPrice, catalog.itemPrice) && Objects.equals(catalogDetails, catalog.catalogDetails) && Objects.equals(cartList, catalog.cartList) && Objects.equals(purchaseList, catalog.purchaseList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(itemId, itemName, itemPrice, catalogDetails, cartList, purchaseList);
     }
 }
 
