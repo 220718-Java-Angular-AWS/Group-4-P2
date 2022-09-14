@@ -6,35 +6,30 @@
         <a style="float:right" [routerLink]="['/personal-info']"> <img src="https://media.istockphoto.com/vectors/user-icon-people-icon-isolated-on-white-background-vector-vector-id1210939712?k=20&m=1210939712&s=612x612&w=0&h=xJqEPQnMiNofprbLXWdEtJQ75QL79lQ5N76J4JOdTIM="style='width:50px; height:50px'></a>
         <a style="float:right" [routerLink]="['/checkoutcart']"> <img src="https://image.shutterstock.com/image-vector/shopping-cart-vector-icon-flat-260nw-1690453492.jpg" style='width:50px; height:50px'> </a>
     </div>
-    </mat-toolbar>
+</mat-toolbar>
 
 <h1 class = 'header'>Personal Information</h1>
-
-
-<table class = 'center'>
-    <tr>Hello <!--{{firstname}}  {{lastname}} -->!</tr>
-    <!-- <tr>First Name: </tr>
-    <tr>Last Name: </tr> -->
-    <tr>Email: </tr>
-    <tr>Username: </tr>
-    <tr>Address: </tr>
-</table>
-
-<!-- <p> First Name: {{user.firstName}}</p> -->
-
+<div class = "center">
+<p class = 'blocktext'> Hello {{user.firstName}} {{user.lastName}}!</p>
+<br>
+<p class = 'blocktext'>email: {{user.email}}</p>
+<br>
+<p class = 'blocktext'>Username: {{user.username}}</p>
+<br>
+<p class = 'blocktext'>Address: {{user.address}}</p>
+</div>
 
 <br>
 <br>
 
 <div class = 'btn'>
-<button class = 'btn1' (click) = 'resetPass()'>Reset Password</button>
+<button class = 'btn1' (click) = 'resetPass()'>Change Password</button>
 <button class = 'btn1' (click) = 'updateAdd()'>Update Address</button>
 <br>
 <button class = 'btn1' (click) = 'changeEmail()'>Change Email</button>
 <button class = 'btn1' (click) = 'payInfo()'>Payment Info</button>
 <br>
 <button class = 'btn1' (click) = 'pastPurchases()'>Past Purchases</button>
-<!-- Do we want this here? -->
 <button class = 'btn1' (click) = 'home()' >Return Home</button>
 </div>
 
