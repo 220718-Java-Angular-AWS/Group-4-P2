@@ -2,18 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-import { Users } from './user';
-import { Login } from './login';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   baseurl = 'http://localhost:8080/login';
-
   constructor(private http: HttpClient) { }
-
 
   // Http Headers
   // httpOptions: object = {
@@ -22,7 +17,7 @@ export class LoginService {
   //     'Content-Type': 'application/json'
   //   })
   // }
-
+  
   reqTest(param: any): Observable<HttpResponse<Object>> {
     console.log("initiating POST request...");
     let observable: Observable<HttpResponse<Object>> = this.http.post(
@@ -50,9 +45,6 @@ export class LoginService {
   //     authUser = observableResponse;
   //     console.log(authUser);
   //   })
-
-
-
   //   return null;
 
   // }
@@ -72,6 +64,7 @@ export class LoginService {
 
   // }
 
+
   // error handling
   errorHandl(error: any) {
     console.log("Error handler invoked...");
@@ -87,9 +80,4 @@ export class LoginService {
     alert("Bad username/password?")
     return throwError(errorMessage);
   }
-
-
-
-
-
 }

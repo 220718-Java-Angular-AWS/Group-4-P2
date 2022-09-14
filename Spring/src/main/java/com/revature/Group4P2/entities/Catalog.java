@@ -21,8 +21,12 @@ public class Catalog {
     @Column(name = "item_price")
     private Double itemPrice;
 
+    @Column(name="image")
+    private String imageURL;
+    
     @Transient
     private Integer catalodDetailId;
+    
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "catalogDetails - catalog")
     private CatalogDetails catalogDetails;
@@ -36,16 +40,18 @@ public class Catalog {
     public Catalog() {
     }
 
-    public Catalog(Integer itemId, String itemName, Double itemPrice, CatalogDetails catalogDetails) {
+    public Catalog(Integer itemId, String itemName, Double itemPrice, String imageURL, CatalogDetails catalogDetails) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemPrice = itemPrice;
+        this.imageURL = imageURL;
         this.catalogDetails = catalogDetails;
     }
 
-    public Catalog(String itemName, Double itemPrice, CatalogDetails catalogDetails) {
+    public Catalog(String itemName, Double itemPrice, String imageURL, CatalogDetails catalogDetails) {
         this.itemName = itemName;
         this.itemPrice = itemPrice;
+        this.imageURL= imageURL;
         this.catalogDetails = catalogDetails;
     }
 
@@ -95,6 +101,14 @@ public class Catalog {
 
     public void setCartItems(List<CartItems> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     @Override
