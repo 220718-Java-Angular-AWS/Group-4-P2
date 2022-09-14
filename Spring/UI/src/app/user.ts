@@ -1,5 +1,5 @@
 export interface Users {
-    id: number;
+    userId: number;
     firstName: String;
     lastName: String;
     email: String;

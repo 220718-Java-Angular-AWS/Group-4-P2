@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { CatalogDisplayService } from '../catalog-display/catalog-display.service';
 import { SearchBarService } from './search-bar.service';
 
 @Component({
@@ -10,21 +11,34 @@ import { SearchBarService } from './search-bar.service';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor(public http: HttpClient, public searchBarService: SearchBarService) { }
+  constructor(
+    public http: HttpClient, 
+    public searchBarService: SearchBarService, 
+    public catalogDisplayService: CatalogDisplayService 
+    ) { }
 
   ngOnInit(): void {
   }
-  baseurl = 'http://localhost:8080/catalog/itemName/'; // Needs correct URL
-  searchInput: FormControl= new FormControl(null);
-  
+  searchInput: FormControl = new FormControl(null); 
+  dropDownOption: FormControl = new FormControl(null); 
  
   search(){
      let keyword: any = this.searchInput.value;
-     console.log(`${this.baseurl}${keyword}`);
-     this.http.get(`${this.baseurl}${keyword}`).subscribe((res:any) => {
-      console.log(res);
-      this.searchBarService.result = res;
+     this.searchBarService.searchByItemName(keyword).subscribe((res:any) => {
+      this.catalogDisplayService.catalogResults = [res];
      })
   }
 
+  searchById(){
+    this.searchInput= new FormControl(null); 
+    let id: any = this.dropDownOption.value;
+    if (id !== 'all') {
+      this.searchBarService.searchByCatalogId(id).subscribe((res:any) => {
+      this.catalogDisplayService.catalogResults = res;
+      })
+    } else {
+      this.catalogDisplayService.catalogResults = this.catalogDisplayService.catalogResultsInit
+    }
+
+ }
 }

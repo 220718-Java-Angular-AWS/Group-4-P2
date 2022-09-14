@@ -1,24 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+
 @Injectable({
   providedIn: 'root'
 })
-export class SearchBarService {
+export class CatalogDisplayService {
 
   baseurl = 'http://localhost:8080/catalog/';
+  catalogResultsInit: any;
   catalogResults: any;
 
   constructor(public http: HttpClient) { }
 
-  searchByItemName(itemName: any) {
-    return this.http.get(`${this.baseurl}itemName/${itemName}`)
-  }
-
-
-  searchByCatalogId(catalogId: number){
-    return this.http.get(`${this.baseurl}catalogDetails/${catalogId}`)
+  getAllCatalogItems() {
+    return this.http.get(`${this.baseurl}`)
   }
 }
-
-

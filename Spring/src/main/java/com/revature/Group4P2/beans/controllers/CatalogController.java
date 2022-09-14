@@ -82,8 +82,6 @@ public class CatalogController {
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public void updateCatalog(@RequestBody Catalog catalog)
     {
-
-        System.out.println("UPDATE");
         service.updateCatalog(catalog);
         System.out.println("UPDATING");
     }
