@@ -20,9 +20,8 @@ export class UsersService {
       'Content-Type': 'application/json'
     })
   }
-
-
-
+  
+  //POST User
   CreateUser(data: CreateUsers): Observable<CreateUsers> {
     console.log("MADE INTO USERS CREATE ")
     return this.http.post<CreateUsers>(this.baseurl , data, this.httpOptions)
@@ -61,6 +60,17 @@ export class UsersService {
     catchError(this.errorHandl)
   )
 }
+
+//Update User Info
+UpdateUser(data: Users): Observable<Users> {
+  console.log("Update User Info")
+  return this.http.put<Users>(this.baseurl , data, this.httpOptions)
+  .pipe(
+    retry(1),
+    catchError(this.errorHandl),
+  )
+}
+
 // error handling
 errorHandl(error: any) {
   let errorMessage = '';
