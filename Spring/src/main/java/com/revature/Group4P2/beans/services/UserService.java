@@ -12,6 +12,7 @@ import java.util.Optional;
 @Service
 public class UserService {
     UsersRepo repo;
+
     ValidateService validate;
 
     @Autowired
