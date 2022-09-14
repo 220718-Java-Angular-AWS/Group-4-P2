@@ -22,7 +22,6 @@ public class Cart {
     @Transient
     private Integer cartUserId;
 
-
     @Column
     private Boolean purchasedCart = false;
 //    @Column

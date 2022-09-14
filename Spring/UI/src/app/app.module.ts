@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { ProfileDisplayComponent } from './profile-display/profile-display.component';
-
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { ProfileDisplayComponent } from './profile-display/profile-display.compo
     NavBarComponent,
     LoginComponent,
     ItemDetailsComponent,
-    ProfileDisplayComponent
+    ProfileDisplayComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,

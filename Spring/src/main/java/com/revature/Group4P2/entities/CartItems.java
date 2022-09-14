@@ -15,6 +15,9 @@ public class CartItems {
     @Column
     private Integer quantity;
 
+    @Column
+    private Double totalCost;
+
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "catalog-cartitem")
@@ -30,15 +33,17 @@ public class CartItems {
     public CartItems() {
     }
 
-    public CartItems(Integer cartItemId, Integer quantity, Catalog catalog, Cart cart) {
+    public CartItems(Integer cartItemId, Integer quantity, Double totalCost, Catalog catalog, Cart cart) {
         this.cartItemId = cartItemId;
         this.quantity = quantity;
         this.catalog = catalog;
+        this.totalCost = totalCost;
         this.cart = cart;
     }
 
-    public CartItems(Integer quantity, Catalog catalog, Cart cart) {
+    public CartItems(Integer quantity, Double totalCost, Catalog catalog, Cart cart) {
         this.quantity = quantity;
+        this.totalCost = totalCost;
         this.catalog = catalog;
         this.cart = cart;
     }
@@ -67,6 +72,14 @@ public class CartItems {
         this.catalog = catalog;
     }
 
+    public Double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(Double totalCost) {
+        this.totalCost = totalCost;
+    }
+
     public Cart getCart() {
         return cart;
     }
@@ -88,6 +101,7 @@ public class CartItems {
         return "CartItems{" +
                 "cartItemId=" + cartItemId +
                 ", quantity=" + quantity +
+                ", totalCost="+ totalCost+
                 ", catalog=" + catalog +
                 ", cart=" + cart +
                 '}';

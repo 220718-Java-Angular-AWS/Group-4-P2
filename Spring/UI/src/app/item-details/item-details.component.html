@@ -5,8 +5,7 @@
     <!-- need to display item image  -->
     <img [src]="srcImage" style="width: 300px;height: 300px;">
     <br>
-    <p> $ {{catalogItem.itemPrice}}</p>
-    <p> Cost Per Item </p>
+    <p> $ {{catalogItem.itemPrice}} Cost Per Item </p>
 
     <p> choose quantity </p>
     <select name="quantity" id="quantity" [(ngModel)]="quantity" (change)="changeQuantity()">
@@ -22,11 +21,11 @@
     </select>
 
 
-    <p> Total: $ {{purchaseAmount}}</p>
+    <p> Total: $ {{purchaseAmount}} Purchase Amount </p>
     <button onclick="addItemToCart()"> Add To Cart</button>
     <p> {{itemAddedToCart}}</p>
 
-    <button (click)="['/login']"> Back</button>
+    <button [routerLink]="['/login']"> Back</button>
 
     <!-- need to route back in button [routerLink]= "['/mainmenu']" -->
 

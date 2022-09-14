@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
   onLogin(): void {
     let loginReturn: boolean = true;
 
+
     let now = new Date();
     let formalDate = now.getMonth() + "/" + now.getDate() + "/" + now.getFullYear()
 
@@ -63,7 +64,7 @@ export class LoginComponent implements OnInit {
       if (response.status == 200) {
         userReturned = response.body as Users
         console.log("response body", response.body)
-        
+
         console.log("VIEWING USER: ", userReturned.userId)
         //good auth
       }
@@ -83,62 +84,58 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem("currentUserId", "" + userReturned.userId);
 
-        // cart
-        let cartFound = false;
-        this._cartService.Getcart().subscribe((carts: Cart[]) => {
-          console.log("Carts: ", carts)
-          for (var cart of carts) {
-            if (cart.cartUserId === userReturned.userId && cart.purchasedCart === false) {
-              cartFound = true;
-            }
-          }
-          console.log("cartFound: ", cartFound)
-          if (!cartFound) {
-            // create user a new cart
-            console.log("CART NOT FOUND ....")
+        // this will go find the cart and see if one exists for the user already 
+        this.findCart(userReturned, formalDate);
 
 
-            console.log("Current Date: ", formalDate)
-
-            // let userInfo: Users =
-            // {
-            //   userId: userReturned.userId,
-            //   lastName: userReturned.lastName,
-            //   firstName: userReturned.firstName,
-            //   address: userReturned.address,
-            //   email: userReturned.email,
-            //   cardNumber: userReturned.cardNumber,
-            //   username: userReturned.username,
-            //   password: userReturned.password
-
-            // }
-            console.log("USERINFO :", userReturned)
-            if (!cartFound) {
-              let newCart: CreateCart = {
-                date: formalDate,
-                purchasedCart: false,
-                user: userReturned
-              }
-
-              console.log("new cart: ", newCart);
-              this._cartService.Createcart(newCart);
-
-              // need to route to main menu 
-
-            }
-
-          }
-
-
-        }
-
-
-        )
 
 
       }
 
     })
+
+  }
+
+
+  findCart(userReturned: Users, formalDate: string): void {
+    // cart
+    let cartFound = false;
+    this._cartService.Getcart().subscribe((carts: Cart[]) => {
+      console.log("Carts: ", carts)
+      for (var cart of carts) {
+        if (cart.cartUserId === userReturned.userId && cart.purchasedCart === false) {
+          cartFound = true;
+        }
+      }
+      console.log("cartFound: ", cartFound)
+      if (!cartFound) {
+        // create user a new cart
+        console.log("CART NOT FOUND ....")
+
+        console.log("Current Date: ", formalDate)
+
+        console.log("USERINFO :", userReturned)
+
+        let newCart: CreateCart = {
+          date: formalDate,
+          purchasedCart: false,
+          user: userReturned
+        }
+
+        console.log("new cart: ", newCart);
+        this._cartService.Createcart(newCart).subscribe(() => {console.log("post request sent...")});
+
+        // need to route to main menu 
+
+
+
+      }
+
+
+    }
+
+
+    )
 
   }
 

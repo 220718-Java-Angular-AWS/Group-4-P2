@@ -93,6 +93,7 @@ export class ItemDetailsComponent implements OnInit {
     // createCart
     createItem = {
       quantity: this.quantity,
+      totalCost: this.purchaseAmount,
       catalog: this.catalogItem,
       Cart: this.cart 
     } 

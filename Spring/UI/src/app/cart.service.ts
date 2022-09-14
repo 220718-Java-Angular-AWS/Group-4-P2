@@ -21,11 +21,11 @@ export class CartService {
 
 
 
-  Createcart(data: CreateCart): Observable<CreateCart> {
+  Createcart(data: any): Observable<CreateCart> {
     console.log("MADE INTO CART SERVICE ")
     console.log("Data from create cart:", data)
     return this.http.post<CreateCart>(this.baseurl, JSON.stringify(data), this.httpOptions)
-      .pipe(
+    .pipe(
         retry(1),
         catchError(this.errorHandl)
       )
