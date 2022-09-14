@@ -2,6 +2,7 @@ package com.revature.Group4P2.beans.services;
 
 import com.revature.Group4P2.beans.repositories.UsersRepo;
 import com.revature.Group4P2.entities.Users;
+import com.revature.Group4P2.exceptions.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +13,13 @@ import java.util.Optional;
 public class UserService {
     UsersRepo repo;
 
-    @Autowired
-    public UserService(UsersRepo usersRepo)
-    {
-        this.repo = usersRepo;
-    }
+    ValidateService validate;
 
+    @Autowired
+    public UserService(UsersRepo userRepo, ValidateService validateService) {
+        this.repo = userRepo;
+        this.validate = validateService;
+    }
     // crud repo
 
     // get by id
@@ -33,9 +35,13 @@ public class UserService {
     }
 
     // create
-    public void createUsers(Users user)
+    public void createUsers(Users user)throws InvalidInputException
     {
-        repo.save(user);
+        if(validate.validateUsers(user)) {
+            repo.save(user);
+        } else {
+            throw new InvalidInputException("Failed to create account!");
+        }
     }
 
     // update
