@@ -17,4 +17,5 @@ public interface CatalogRepo extends JpaRepository<Catalog, Integer> {
 
     @Query("FROM catalog WHERE item_name = :itemName")
     public Optional<Catalog> findByCatalogName(@Param("itemName") String itemName);
+
 }
