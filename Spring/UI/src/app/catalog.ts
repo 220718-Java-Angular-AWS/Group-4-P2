@@ -4,5 +4,5 @@ export interface Catalog {
     itemId: number;
     itemName: String;
     itemPrice: number;
-    catalogDetails: CatalogDetails;
+    catalogDetailsId: number;
 }

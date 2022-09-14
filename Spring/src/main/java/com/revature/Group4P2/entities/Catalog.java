@@ -23,8 +23,10 @@ public class Catalog {
 
     @Column(name="image")
     private String imageURL;
-
-
+    
+    @Transient
+    private Integer catalodDetailId;
+    
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "catalogDetails - catalog")
     private CatalogDetails catalogDetails;
@@ -87,6 +89,14 @@ public class Catalog {
 
     public List<CartItems> getCartItems() {
         return cartItems;
+    }
+
+    public Integer getCatalodDetailId() {
+        return catalodDetailId;
+    }
+
+    public void setCatalodDetailId(Integer catalodDetailId) {
+        this.catalodDetailId = catalodDetailId;
     }
 
     public void setCartItems(List<CartItems> cartItems) {

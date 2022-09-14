@@ -14,7 +14,7 @@ import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping(value = "/cart")
 public class CartController {
 
@@ -26,6 +26,7 @@ public class CartController {
 
     @Autowired
     public CartController(CartService service, CatalogService catalogService, UserService userService) {
+        System.out.println("IN CART CONTROLLER");
         this.service = service;
         this.catalogService = catalogService;
         this.userService = userService;
@@ -36,6 +37,7 @@ public class CartController {
     public @ResponseBody Cart getCartById(@PathVariable Integer cartId)
     {
         Optional<Cart> optionalCart = service.getCartById(cartId);
+        optionalCart.get().setCartUserId(optionalCart.get().getUser().getUserId());
         return optionalCart.get();
     }
 
@@ -62,6 +64,12 @@ public class CartController {
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody List<Cart> getAllCart()
     {
+        System.out.println("MADE INTO CART ");
+        List<Cart> allCart = service.getAllCart();
+        for(int i =0; i < allCart.size(); i++)
+        {
+          allCart.get(i).setCartUserId(allCart.get(i).getUser().getUserId());
+        }
         return service.getAllCart();
     }
 
@@ -70,11 +78,13 @@ public class CartController {
     @ResponseStatus(value = HttpStatus.OK)
     public void createCart(@RequestBody Cart cart)
     {
-
+        System.out.println("MADE INTO CART CREATE");
         Optional<Users> optionalUsers = userService.getUserById(cart.getUser().getUserId());
 
         if(optionalUsers.isPresent()) {
-            cart.setUser(userService.getUserById(cart.getUser().getUserId()).get());
+            Users user = userService.getUserById(cart.getUser().getUserId()).get();
+            cart.setUser(user);
+            cart.setCartUserId(user.getUserId());
             service.createCart(cart);
         }
         else

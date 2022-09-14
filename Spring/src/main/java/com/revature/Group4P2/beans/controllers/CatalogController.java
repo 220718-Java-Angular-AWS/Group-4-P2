@@ -44,6 +44,7 @@ public class CatalogController {
     public @ResponseBody Catalog getCatalogByItemNameId(@PathVariable String itemName)
     {
         Optional<Catalog> optionalCatalog = service.findCatalogByItemName(itemName);
+        optionalCatalog.get().setCatalodDetailId(optionalCatalog.get().getCatalogDetails().getCatalogDetailsId());
         return optionalCatalog.get();
     }
 
@@ -51,7 +52,12 @@ public class CatalogController {
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody List<Catalog> getCatalogByCatalogDetailsId(@PathVariable Integer catId)
     {
-        return service.getAllCatalogByCatalogDetailsId(catId);
+        List<Catalog> allCatalog = service.getAllCatalogByCatalogDetailsId(catId);
+        for(Catalog catalog: allCatalog)
+        {
+            catalog.setCatalodDetailId(catalog.getCatalogDetails().getCatalogDetailsId());
+        }
+        return allCatalog;
     }
 
 
@@ -61,7 +67,12 @@ public class CatalogController {
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody List<Catalog> getAllCatalog()
     {
-        return service.getAllCatalog();
+        List<Catalog> allCatalog = service.getAllCatalog();
+        for(Catalog catalog: allCatalog)
+        {
+            catalog.setCatalodDetailId(catalog.getCatalogDetails().getCatalogDetailsId());
+        }
+        return allCatalog;
     }
     // POST - create - save,
     @RequestMapping(method = RequestMethod.POST)
@@ -72,6 +83,7 @@ public class CatalogController {
         Optional<CatalogDetails> optional = catalogDetailService.getCatalogDetailById(catalog.getCatalogDetails().getCatalogDetailsId());
         if(optional.isPresent()) {
             catalog.setCatalogDetails(catalogDetailService.getCatalogDetailById(catalog.getCatalogDetails().getCatalogDetailsId()).get());
+            catalog.setCatalodDetailId(catalog.getCatalogDetails().getCatalogDetailsId());
         }
         service.createCatalog(catalog);
     }

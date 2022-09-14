@@ -9,6 +9,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class LoginService {
   baseurl = 'http://localhost:8080/login';
   constructor(private http: HttpClient) { }
+
   // Http Headers
   // httpOptions: object = {
   //   observe: 'response',
@@ -16,6 +17,7 @@ export class LoginService {
   //     'Content-Type': 'application/json'
   //   })
   // }
+  
   reqTest(param: any): Observable<HttpResponse<Object>> {
     console.log("initiating POST request...");
     let observable: Observable<HttpResponse<Object>> = this.http.post(
@@ -28,9 +30,11 @@ export class LoginService {
             'Content-Type': 'application/json'
           })
       }).pipe(retry(1), catchError(this.errorHandl));
+
     return observable;
   }
-  // second attempt : changed so that it returns any that way can check the type in component
+
+  // second attempt : changed so that it returns any that way can check the type in component 
   // Login1(login: Login): any {
   //   //return this.http.get<Users>(this.baseurl + '/auth')
   //   let loginattempt: Observable<HttpResponse<Users>> = this.http.post<Users>(this.baseurl + '/auth', JSON.stringify(login), /*this.httpOptions*/{ observe: 'response' }).pipe(retry(1), catchError(this.errorHandl))
@@ -42,18 +46,25 @@ export class LoginService {
   //     console.log(authUser);
   //   })
   //   return null;
+
   // }
-  // first attempt
+
+  // first attempt 
   // Login1(login: Login): Observable<Users> {
   //   return this.http.get<Users>(this.baseurl + login)
   //   let loginattempt : Observable<Users> = this.http.post<Users>(this.baseurl, JSON.stringify(login), this.httpOptions).pipe(retry(1), catchError(this.errorHandl))
   //   loginattempt.subscribe((event) => {console.log(event)})
   //   console.log("Login Attempt:" + loginattempt)
   //   return loginattempt
+
   // }
+
   // Login2(Users: any){
   // return this.http.post<Users>(this.baseurl, Users, this.httpOptions)
+
   // }
+
+
   // error handling
   errorHandl(error: any) {
     console.log("Error handler invoked...");

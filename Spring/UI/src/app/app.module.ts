@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import { HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -14,7 +14,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { CheckoutcartComponent } from './checkoutcart/checkoutcart.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
-
+import { ItemDetailsComponent } from './item-details/item-details.component';
+import { ProfileDisplayComponent } from './profile-display/profile-display.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +25,13 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
     NavBarComponent,
     LoginComponent,
     SearchBarComponent,
-    CatalogDisplayComponent
+    CatalogDisplayComponent,
     OrderhistoryComponent,
     CheckoutcartComponent,
-    PersonalInfoComponent
+    PersonalInfoComponent,
+    ItemDetailsComponent,
+    ProfileDisplayComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,

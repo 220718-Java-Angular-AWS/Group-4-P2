@@ -20,9 +20,13 @@ public class AuthService {
         System.out.println("MADE INTO LOGIN SERVICE METHOD");
         Optional<Users> result = repo.findByUsername(username);
         if(result.isPresent() && result.get().getPassword().equals(password)) {
+            System.out.println("username/password match");
             return result.get();
         } else {
+            System.out.println("username/password DID NOT match");
             throw new AccessDeniedException("Login failed - Check Credentials!");
+//            Users user = null;
+//            return user;
         }
 
     }

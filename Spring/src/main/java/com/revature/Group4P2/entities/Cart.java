@@ -19,6 +19,8 @@ public class Cart {
     @Column
     private String date;
 
+    @Transient
+    private Integer cartUserId;
 
     @Column
     private Boolean purchasedCart = false;
@@ -98,6 +100,14 @@ public class Cart {
 
     public void setCartItems(List<CartItems> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    public Integer getCartUserId() {
+        return cartUserId;
+    }
+
+    public void setCartUserId(Integer cartUserId) {
+        this.cartUserId = cartUserId;
     }
 
     @Override

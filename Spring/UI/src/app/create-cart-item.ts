@@ -1,9 +1,9 @@
 import { Cart } from "./cart";
 import { Catalog } from "./catalog";
 
-export interface CartItems {
-    cartItemId: number;
+export interface CreateCartItems {
     quantity: number;
     totalCost: number;
-    catalogId: number;
+    catalog: Catalog;
+    Cart: Cart;
 }

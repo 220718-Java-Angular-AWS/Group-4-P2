@@ -6,5 +6,5 @@ export interface Users {
     password: String;
     username: String;
     address: String;
-    cardNumber: number;  
+    cardNumber: number;
 }
