@@ -1,11 +1,18 @@
 <!-- Login with username and password -->
-<h1>Welcome ...</h1>
+<h1>Welcome to Trader Clothes! <h1>
 
 <h3> Sign In </h3>
-<label for="userName"> Username:  </label>
-<input type="text" id = "userName" [(ngModel)] = "userName"> 
-<br>
-<label for="password"> Password:  </label>
-<input type="password" id = "password" [(ngModel)] = "password">
 
-<button (click) = "onLogin()"> Login </button>
+<div class = text>
+<label for="userName"> 
+    Username:  <input type="text" id = "userName" [(ngModel)] = "userName"> 
+</label>
+
+<label for="password"> 
+    Password:  <input type="password" id = "password" [(ngModel)] = "password">
+</label>
+</div>
+
+<div>
+    <button (click) = "onLogin()"> Login </button>
+</div>
