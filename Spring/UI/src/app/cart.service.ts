@@ -11,16 +11,12 @@ export class CartService {
   baseurl = 'http://localhost:8080/cart';
 
   constructor(private http: HttpClient) { }
-
   // Http Headers
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
   }
-
-
-
   Createcart(data: any): Observable<CreateCart> {
     console.log("MADE INTO CART SERVICE ")
     console.log("Data from create cart:", data)
@@ -30,7 +26,6 @@ export class CartService {
         catchError(this.errorHandl)
       )
   }
-
   // GET by id
   GetcartbyId(cartId: number): Observable<Cart> {
     return this.http.get<Cart>(this.baseurl + cartId)
@@ -63,6 +58,7 @@ export class CartService {
         retry(1),
         catchError(this.errorHandl)
       )
+
   }
   // error handling
   errorHandl(error: any) {
@@ -77,6 +73,4 @@ export class CartService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-
-
 }

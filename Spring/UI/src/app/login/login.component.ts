@@ -15,7 +15,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   _service: LoginService;
   _router: Router;
   _cartService: CartService;
@@ -28,8 +27,6 @@ export class LoginComponent implements OnInit {
     this._service = service;
     this._router = router;
     this._cartService = cartService;
-
-
   }
 
   ngOnInit(): void {
@@ -59,11 +56,13 @@ export class LoginComponent implements OnInit {
     };
     let observable: Observable<HttpResponse<Object>> = this._service.reqTest(loginCredintials);
 
+
     observable.subscribe((response: HttpResponse<Object>) => {
       console.log("Observable has emitted a value...");
       if (response.status == 200) {
         userReturned = response.body as Users
         console.log("response body", response.body)
+
 
         console.log("VIEWING USER: ", userReturned.userId)
         //good auth
@@ -136,9 +135,6 @@ export class LoginComponent implements OnInit {
 
 
     )
-
   }
-
-
 }
 
