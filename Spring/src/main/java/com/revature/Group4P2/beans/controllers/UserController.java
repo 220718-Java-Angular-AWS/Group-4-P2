@@ -47,9 +47,9 @@ public class UserController {
     // POST - create - save,
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public void createUsers(@RequestBody Users user) throws InvalidInputException {
+    public @ResponseBody Users createUsers(@RequestBody Users user) throws InvalidInputException {
         System.out.println("MADE INTO POST");
-        service.createUsers(user);
+        return service.createUsers(user); // changed by adding responsebody with users instead of void and said return
     }
 
     // PUT/PATCH - update - save,

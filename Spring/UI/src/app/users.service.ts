@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Users } from './user';
@@ -12,6 +12,8 @@ import { CreateUsers } from './createUser';
 export class UsersService {
   baseurl = 'http://localhost:8080/shoppingusers/';
 
+  createUser: boolean = false;
+
   constructor(private http: HttpClient) { }
 
   // Http Headers
@@ -20,19 +22,40 @@ export class UsersService {
       'Content-Type': 'application/json'
     })
   }
+
   
-  //POST User
-  CreateUser(data: CreateUsers): Observable<CreateUsers> {
-    console.log("MADE INTO USERS CREATE ")
-    console.log(data)
-    return this.http.post<CreateUsers>(this.baseurl, data, this.httpOptions)
-      .pipe(
-        retry(1),
-        catchError(this.errorHandl)
-      )
+
+ CreateUser(data: any): Observable<HttpResponse<Object>> {
+  this.createUser = true;
+  let observable: Observable<HttpResponse<Object>> = this.http.post(
+    this.baseurl,
+    JSON.stringify(data),
+    {
+      observe: 'response',
+      headers: new HttpHeaders(
+        {
+          'Content-Type': 'application/json'
+        })
+    }).pipe(retry(1), catchError(this.errorHandl2));
+
+  return observable;
+  
 
 
   }
+  
+  //POST User original
+  // CreateUser(data: CreateUsers): Observable<CreateUsers> {
+  //   console.log("MADE INTO USERS CREATE ")
+  //   console.log(data)
+  //   return this.http.post<CreateUsers>(this.baseurl, data, this.httpOptions)
+  //     .pipe(
+  //       retry(1),
+  //       catchError(this.errorHandl)
+  //     )
+
+
+  // }
 
   // CreateUser(data: any): Observable<HttpResponse<Object>>
   // {
@@ -95,10 +118,29 @@ UpdateUser(data: Users): Observable<Users> {
   // error handling
   errorHandl(error: any) {
     let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
+    if (error.error instanceof ErrorEvent && !this.CreateUser) {
       // Get client-side error
       errorMessage = error.error.message;
-    } else {
+    } 
+    
+    else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  }
+  errorHandl2(error: any) {
+
+    alert("Invalid Sign Up Try Again")
+
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent && !this.CreateUser) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } 
+
+    else {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }

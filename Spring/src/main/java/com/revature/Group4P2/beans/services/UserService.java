@@ -34,10 +34,10 @@ public class UserService {
     }
 
     // create
-    public void createUsers(Users user)throws InvalidInputException
+    public Users createUsers(Users user)throws InvalidInputException
     {
         if(validate.validateUsers(user)) {
-            repo.save(user);
+            return repo.save(user); // changed by adding return and Users return body
         } else {
             throw new InvalidInputException("Failed to create account!");
         }
