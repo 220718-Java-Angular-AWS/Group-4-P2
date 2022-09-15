@@ -58,7 +58,7 @@ export class CartItemService {
   }
 
   DeleteCartItems(id: number) {
-    return this.http.delete<CartItems>(this.baseurl + "/" + id, this.httpOptions)
+    return this.http.delete<CartItems>(this.baseurl + id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.errorHandl)

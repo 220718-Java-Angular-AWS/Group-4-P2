@@ -86,6 +86,7 @@ export class CheckoutcartComponent implements OnInit {
           console.log("UPDATED CART SHOULD NOW BE TRUE FOR "+ this.userCart.cartId);
         }
       )
+      
 
   }
  
@@ -94,7 +95,7 @@ export class CheckoutcartComponent implements OnInit {
   }
 
   deleteItem(id: number): void {
-    console.log('cartItemId', id)
+    console.log('cartItemId DELETE: ', id)
     this._cartItemsService.DeleteCartItems(id)
       .subscribe(() => {
         console.log("Deleted Cart Item Id: " + id)
