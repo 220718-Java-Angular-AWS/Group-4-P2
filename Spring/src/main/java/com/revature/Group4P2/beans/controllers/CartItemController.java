@@ -44,6 +44,7 @@ public class CartItemController {
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody List<CartItems> getCartItemsByCartId(@PathVariable Integer getCartItemsByCartId)
     {
+        System.out.println("getCartItemsByCartId ....");
         List<CartItems> cartItems = service.getAllCartByCartId(getCartItemsByCartId);
         for(CartItems oneCartItem: cartItems)
         {

@@ -10,8 +10,8 @@ import { CartItems } from './cart-items';
 })
 export class CartItemService {
 
-  baseurl = 'http://localhost:8080/cartItem';
-  
+  baseurl = 'http://localhost:8080/cartItem/';
+
   constructor(private http: HttpClient) { }
 
   // Http Headers
@@ -21,47 +21,48 @@ export class CartItemService {
     })
   }
 
-  createCartItem(data: CreateCartItems): Observable<CreateCartItems>
-  {
+  createCartItem(data: CreateCartItems): Observable<CreateCartItems> {
     console.log("CART ITEM SERVICE ... create cart item");
     return this.http.post<CreateCartItems>(this.baseurl, JSON.stringify(data), this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl),
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl),
 
-    )
+      )
   }
 
   GetCartItembyId(id: number): Observable<CartItems> {
     return this.http.get<CartItems>(this.baseurl + id)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
   }
 
-  GetAllCartItemsByCartId(id:number): Observable<CartItems[]> {
-    return this.http.get<CartItems[]>(this.baseurl+"/getCartItemsByCartId")
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
+
+  GetAllCartItemsByCartId(id: number): Observable<CartItems[]> {
+    console.log("GET CCCC: ", id)
+    return this.http.get<CartItems[]>(this.baseurl + "getCartItemsByCartId/" + id)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
   }
 
   GetAllCartItems(): Observable<CartItems> {
     return this.http.get<CartItems>(this.baseurl)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
   }
 
-  DeleteCartItems(id: number){
-    return this.http.delete<CartItems>(this.baseurl + id, this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandl)
-    )
+  DeleteCartItems(id: number) {
+    return this.http.delete<CartItems>(this.baseurl + "/" + id, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
   }
 
 
@@ -71,18 +72,18 @@ export class CartItemService {
 
 
   // error handling
-errorHandl(error: any) {
-  let errorMessage = '';
-  if(error.error instanceof ErrorEvent) {
-    // Get client-side error
-    errorMessage = error.error.message;
-  } else {
-    // Get server-side error
-    errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+  errorHandl(error: any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
-  console.log(errorMessage);
-  return throwError(errorMessage);
-}
 
 
 

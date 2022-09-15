@@ -9,6 +9,7 @@ import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ProfileDisplayComponent } from './profile-display/profile-display.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: "orderhistory", component: OrderhistoryComponent},
   {path: "checkoutcart", component: CheckoutcartComponent},
   {path: "personal-info", component: PersonalInfoComponent},
-  {path: "itemDetails/:id", component: ItemDetailsComponent}
+  {path: "itemDetails/:id", component: ItemDetailsComponent},
+  {path: "profileDispaly", component: ProfileDisplayComponent}
 ];
 
 @NgModule({

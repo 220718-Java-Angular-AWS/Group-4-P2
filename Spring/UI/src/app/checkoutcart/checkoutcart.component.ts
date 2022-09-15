@@ -51,7 +51,7 @@ export class CheckoutcartComponent implements OnInit {
     .subscribe((cart : Cart) => {
       console.log("CHECKOUT VIEW CART : ", cart);
       this.userCart = cart;
-
+      console.log("cart Cart ID:", cart.cartId)
       // need to get all the cart items associated with this cart 
       this._cartItemsService.GetAllCartItemsByCartId(cart.cartId)
       .subscribe((cartItems: CartItems[])=> {
@@ -91,6 +91,15 @@ export class CheckoutcartComponent implements OnInit {
  
   cartId(cartId: any) {
     throw new Error('Method not implemented.');
+  }
+
+  deleteItem(id: number): void {
+    console.log('cartItemId', id)
+    this._cartItemsService.DeleteCartItems(id)
+      .subscribe(() => {
+        console.log("Deleted Cart Item Id: " + id)
+        // this.router.navigate(['/checkoutcart'], { replaceUrl: true })
+      })
   }
 
 }

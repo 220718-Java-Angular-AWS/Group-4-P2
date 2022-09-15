@@ -1,4 +1,4 @@
-.nav-bar{
+.nav-bar {
     justify-content: space-between
 }
 
@@ -32,19 +32,29 @@ label {
 
     font-size: medium;
     font-family: Arial, Helvetica, sans-serif;
-  }
+}
 
-  input {
+input {
     height: 20px;
     flex: 0 0 200px;
     margin-left: 10px;
-    
-  }
+
+}
 
 span {
     padding-right: 10rem;
 }
 
-.header{ margin-right: 150px;
+.header {
+    margin-right: 150px;
 
+}
+
+/*
+break between styling because
+*/
+
+img {
+    width: 100%;
+    height: auto;
 }
