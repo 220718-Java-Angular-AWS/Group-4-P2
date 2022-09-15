@@ -28,7 +28,6 @@ export class SearchBarComponent implements OnInit {
       this.catalogDisplayService.catalogResults = [res];
      })
   }
-  
 
   searchById(){
     this.searchInput= new FormControl(null); 

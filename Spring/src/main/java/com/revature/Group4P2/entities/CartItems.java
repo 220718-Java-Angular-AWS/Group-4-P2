@@ -41,6 +41,8 @@ public class CartItems {
         this.cart = cart;
     }
 
+
+
     public CartItems(Integer quantity, Double totalCost, Catalog catalog, Cart cart) {
         this.quantity = quantity;
         this.totalCost = totalCost;
