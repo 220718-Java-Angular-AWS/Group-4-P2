@@ -17,6 +17,15 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { ProfileDisplayComponent } from './profile-display/profile-display.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+<<<<<<< Updated upstream
+=======
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ChangeEmailComponent } from './change-email/change-email.component';
+import { PaymentInfoComponent } from './payment-info/payment-info.component';
+import { UpdateAddressComponent } from './update-address/update-address.component';
+
+
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -31,7 +40,15 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     PersonalInfoComponent,
     ItemDetailsComponent,
     ProfileDisplayComponent,
+<<<<<<< Updated upstream
     OrderHistoryComponent
+=======
+    OrderHistoryComponent,
+    ResetPasswordComponent, 
+    ChangeEmailComponent,
+    PaymentInfoComponent,
+    UpdateAddressComponent
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,

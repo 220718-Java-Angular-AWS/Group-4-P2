@@ -1,1 +1,10 @@
-<p>change-email works!</p>
+<app-nav-bar></app-nav-bar>
+
+<div class="changeEmail">
+    <span *ngIf="!editMode">Email: {{user?.email}}</span> 
+    <span *ngIf="editMode">Email: <input type="text" [formControl]="emailInput"></span>   
+    <div>
+        <button (click)="editMode=true">Edit</button>
+        <button (click)="updateEmail()">Update Email Address</button>
+    </div> 
+</div>

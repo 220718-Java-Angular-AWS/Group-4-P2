@@ -36,16 +36,17 @@ export class PersonalInfoComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    let id = parseInt(this.router.snapshot.paramMap.get('id')!, 10);
+    //let id = parseInt(this.router.snapshot.paramMap.get('id')!, 10);
 
     //get id from local storage and change id to match it
-    this.getCurrentUser(id);
+    this.getCurrentUser();
   }
   
-  getCurrentUser(id: number): void{
-      this._userService.GetUserbyId(id)
+  getCurrentUser(): void{
+      this._userService.GetUserbyId()
       .subscribe(data => 
         {
+          console.warn(data)
           this.user = data;
         })
     }

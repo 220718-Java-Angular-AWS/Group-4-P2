@@ -10,7 +10,7 @@ import { CreateUsers } from './createUser';
 })
 
 export class UsersService {
-  baseurl = 'http://localhost:8080/shoppingusers';
+  baseurl = 'http://localhost:8080/shoppingusers/';
 
   constructor(private http: HttpClient) { }
 
@@ -24,6 +24,7 @@ export class UsersService {
   //POST User
   CreateUser(data: CreateUsers): Observable<CreateUsers> {
     console.log("MADE INTO USERS CREATE ")
+    console.log(data)
     return this.http.post<CreateUsers>(this.baseurl, data, this.httpOptions)
       .pipe(
         retry(1),
@@ -50,9 +51,13 @@ export class UsersService {
   //   return observable;
   // }
 
+  getIdFromLocalStorage(){
+    return window.localStorage.getItem("currentUserId")
+  }
 
   // GET by id
-  GetUserbyId(id: number): Observable<Users> {
+  GetUserbyId(): Observable<Users> {
+    let id: any= this.getIdFromLocalStorage()
     return this.http.get<Users>(this.baseurl + id)
       .pipe(
         retry(1),

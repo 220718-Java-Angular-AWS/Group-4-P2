@@ -30,8 +30,8 @@ export class ProfileDisplayComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let currentUserId: number = Number(localStorage.getItem("currentUserId"));
-    this._userService.GetUserbyId(currentUserId)
+    //let currentUserId: number = Number(localStorage.getItem("currentUserId"));
+    this._userService.GetUserbyId()
       .subscribe((data: Users) => { this.currentUser = data })
 
   }
