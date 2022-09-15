@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { CatalogDisplayComponent } from './catalog-display/catalog-display.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import { RouterModule, Routes } from '@angular/router';
 import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { CheckoutcartComponent } from './checkoutcart/checkoutcart.component';
@@ -17,9 +17,6 @@ import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { ProfileDisplayComponent } from './profile-display/profile-display.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-
-
 
 @NgModule({
   declarations: [
@@ -34,8 +31,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     PersonalInfoComponent,
     ItemDetailsComponent,
     ProfileDisplayComponent,
-    OrderHistoryComponent,
-    ResetPasswordComponent
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,

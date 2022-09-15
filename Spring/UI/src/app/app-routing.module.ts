@@ -14,7 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 const routes: Routes = [
   {path: "welcome-component", component: WelcomeComponent},
   {path: "login", component: LoginComponent},
-  {path: "mainMenu", component: CatalogDisplayComponent},
+  {path: "catalog", component: CatalogDisplayComponent},
   {path: "nav-bar", component: NavBarComponent},
   {path: "orderhistory", component: OrderhistoryComponent},
   {path: "checkoutcart", component: CheckoutcartComponent},

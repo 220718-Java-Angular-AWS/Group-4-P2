@@ -32,8 +32,7 @@ export class ItemDetailsComponent implements OnInit {
     itemId: 0,
     itemName: "",
     itemPrice: 0,
-    catalogDetailsId: 0,
-    imageURL:""
+    catalogDetailsId: 0
   };
 
   cart : Cart= {
@@ -58,22 +57,25 @@ export class ItemDetailsComponent implements OnInit {
   getItem(): void 
   {
     // get the id passed from the router 
-    let id = parseInt(this.router.snapshot.paramMap.get('id')!, 10); 
+    let id = parseInt(this.router.snapshot.paramMap.get('id')!, 10);
 
     // find the item through catalogservice 
     this._catalogService.GetcatalogbyId(id)
-    .subscribe((item: Catalog)=> {this.catalogItem = item;
-    this.srcImage = this.catalogItem.imageURL});
+    .subscribe(item=> {this.catalogItem = item});
 
 
     this._cartService.GetCartByIdFalseCart(this.currentUserId)
-    .subscribe((data: Cart) => {this.cart = data})
+    .subscribe(data => {this.cart = data})
 
-    
+    this.findImage();
 
 
   }
 
+  findImage(): void
+  {
+
+  }
 
   changeQuantity(): void {
     if(this.catalogItem !== undefined)

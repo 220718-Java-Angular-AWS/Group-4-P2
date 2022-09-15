@@ -5,5 +5,4 @@ export interface Catalog {
     itemName: String;
     itemPrice: number;
     catalogDetailsId: number;
-    imageURL:string;
 }
