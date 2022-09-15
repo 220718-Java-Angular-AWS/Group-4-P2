@@ -51,6 +51,7 @@ public class CartItemController {
         {
             // setting variable
             oneCartItem.setCatalogId(oneCartItem.getCatalog().getItemId());
+            oneCartItem.getCart().setCartUserId(oneCartItem.getCart().getUser().getUserId());
         }
         return cartItems;
     }

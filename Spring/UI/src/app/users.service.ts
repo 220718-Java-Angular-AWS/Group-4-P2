@@ -57,8 +57,8 @@ export class UsersService {
 
   // GET by id
   GetUserbyId(): Observable<Users> {
-    let id: any= this.getIdFromLocalStorage()
-    return this.http.get<Users>(this.baseurl + id)
+    let currentUserId = Number(localStorage.getItem("currentUserId"));
+    return this.http.get<Users>(this.baseurl + currentUserId)
       .pipe(
         retry(1),
         catchError(this.errorHandl)

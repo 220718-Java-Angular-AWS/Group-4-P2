@@ -78,6 +78,7 @@ public class CartController {
         for(int i =0; i < allCart.size(); i++)
         {
           allCart.get(i).setCartUserId(allCart.get(i).getUser().getUserId());
+          
         }
         return service.getAllCart();
     }
