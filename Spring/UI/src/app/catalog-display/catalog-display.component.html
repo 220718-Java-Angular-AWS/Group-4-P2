@@ -1,10 +1,9 @@
-
-<app-nav-bar></app-nav-bar>
+<app-nav-bar> </app-nav-bar>
 
 <div class="item-wrapper">
     <div 
         *ngFor="let item of catalogdisplayService.catalogResults"
-        class="card">
+        class="card" routerLink="/itemDetails/{{item.itemId}}">
         <span>{{item.itemName}}</span>
         <img src="{{item.imageURL}}" alt="">
         <span>Cool {{item.itemName}}</span>

@@ -125,9 +125,13 @@ export class LoginComponent implements OnInit {
         this._cartService.Createcart(newCart).subscribe(() => {console.log("post request sent...")});
 
         // need to route to main menu 
+        this._router.navigate(['/mainMenu'], { replaceUrl: true })
 
 
-
+      }
+      else
+      {
+        this._router.navigate(['/mainMenu'], { replaceUrl: true })
       }
 
 
