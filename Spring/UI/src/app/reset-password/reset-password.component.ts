@@ -44,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   getCurrentUser(id: number): void {
-    this._userService.GetUserbyId(id)
+    this._userService.GetUserbyId()
       .subscribe(data => {
         this.user = data;
       })
@@ -66,8 +66,9 @@ export class ResetPasswordComponent implements OnInit {
           cardNumber: this.user.cardNumber
         }
         //put new user information
-        this._userService.UpdateUser(newUser)
-        alert("Password successfully changed!")
+        this._userService.UpdateUser(newUser).subscribe((data: any) => {
+          alert("Password successfully changed!")
+        })
       } else {
         alert("Password not chagned because new passwords did not match.")
       }
