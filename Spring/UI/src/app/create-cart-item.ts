@@ -5,5 +5,5 @@ export interface CreateCartItems {
     quantity: number;
     totalCost: number;
     catalog: Catalog;
-    Cart: Cart;
+    cart: Cart;
 }

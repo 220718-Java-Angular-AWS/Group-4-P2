@@ -57,15 +57,19 @@ export class ItemDetailsComponent implements OnInit {
   getItem(): void 
   {
     // get the id passed from the router 
-    let id = parseInt(this.router.snapshot.paramMap.get('id')!, 10);
-
+    let id = parseInt(this.router.snapshot.paramMap.get('id')!, 10); 
+    console.log("Catalog Id:",id)
     // find the item through catalogservice 
     this._catalogService.GetcatalogbyId(id)
-    .subscribe(item=> {this.catalogItem = item});
+    .subscribe((item: Catalog)=> {this.catalogItem = item;
+      console.log("CatalogItem: ", this.catalogItem)
+    this.srcImage = this.catalogItem.imageURL});
 
 
     this._cartService.GetCartByIdFalseCart(this.currentUserId)
-    .subscribe(data => {this.cart = data})
+    .subscribe((data: Cart) => {this.cart = data
+    console.log("Cart: ", this.cart)
+    })
 
     this.findImage();
 
@@ -86,7 +90,8 @@ export class ItemDetailsComponent implements OnInit {
 
   addItemToCart(): void
   {
-    // need to add the item to the cart 
+    // need to add the item to the cart
+    console.log("MADE INTO ADD CART ITEM") 
     let createItem : CreateCartItems ;
     
 
@@ -95,12 +100,15 @@ export class ItemDetailsComponent implements OnInit {
       quantity: this.quantity,
       totalCost: this.purchaseAmount,
       catalog: this.catalogItem,
-      Cart: this.cart 
+      cart: this.cart 
     } 
+
+    console.log("create Item: ", createItem)
 
     
 
     this._cartItemService.createCartItem(createItem)
+    .subscribe(()=> {console.log("CREATED CART ")})
 
     // add item to screen 
     this.itemAddedToCart = "Amount of $"+ this.purchaseAmount + " was added to your cart";
