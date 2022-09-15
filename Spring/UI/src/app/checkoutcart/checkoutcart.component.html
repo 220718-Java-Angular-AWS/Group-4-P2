@@ -1,21 +1,20 @@
-<mat-toolbar color="primary" class=" nav-bar"> 
-    <div class="header">
-        <span style=" float: left">Welcome to Trader Clothes!</span>
-        <span style=" float: left">...........................................................................................</span>
-        <span style ="float:middle"> Search bar goes here</span>
-        <a style="float:right" [routerLink]="['/personal-info']"> <img src="https://media.istockphoto.com/vectors/user-icon-people-icon-isolated-on-white-background-vector-vector-id1210939712?k=20&m=1210939712&s=612x612&w=0&h=xJqEPQnMiNofprbLXWdEtJQ75QL79lQ5N76J4JOdTIM="style='width:50px; height:50px'></a>
-        <a style="float:right" [routerLink]="['/checkoutcart']"> <img src="https://image.shutterstock.com/image-vector/shopping-cart-vector-icon-flat-260nw-1690453492.jpg" style='width:50px; height:50px'> </a>
-    </div>
-    </mat-toolbar>
+<app-nav-bar> </app-nav-bar>
 
 <h1>Your Current Cart</h1>
 
-<div>
-<table>
-    <tbody>
-        <tr>//item name</tr>
-        <tr>//item price</tr>
-    </tbody>
-</table>
-<button (click) = "buyCart()"> Buy Items In Cart </button>
+
+<div class="item-wrapper">
+    <div 
+        *ngFor="let item of cartCatalogItems"
+        class="card" >
+        <span>{{item[0].itemName}}</span>
+        <img src="{{item[0].imageURL}}" alt="">
+        <span> Cost: $ {{item[1]}}</span>
+    </div>    
 </div>
+
+<p> Total Cost: $ {{totalCost}}</p>
+
+<button (click) = "buyCart()"> Buy Items In Cart </button>
+<p> {{confirmationCheckout}}</p>
+<button [routerLink]="['/mainMenu']"> Back To Main Menu</button>

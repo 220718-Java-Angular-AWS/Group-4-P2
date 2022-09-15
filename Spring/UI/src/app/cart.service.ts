@@ -51,6 +51,18 @@ export class CartService {
         catchError(this.errorHandl)
       )
   }
+
+  Updatecart(data: any): Observable<CreateCart> {
+    console.log("MADE INTO CART SERVICE ")
+    console.log("Data from create cart:", data)
+    return this.http.put<CreateCart>(this.baseurl, JSON.stringify(data), this.httpOptions)
+    .pipe(
+        retry(1),
+        catchError(this.errorHandl)
+      )
+  }
+
+  
   // DELETE by id 
   Deletecart(cartId: number) {
     return this.http.delete<Cart>(this.baseurl + cartId, this.httpOptions)
