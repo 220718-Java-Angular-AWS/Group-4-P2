@@ -33,7 +33,5 @@ public class AuthController {
     //Need a custom exception, and annotate that exception class with @ResponseStatus use the code that would indicate an unsuccessful attempt
     //in the controller we need to verify if auth is good or bad, and if it's bad throw the custom exception
     //lastly, we need an error handler to handle the thrown exception
-
-
-
 }
+

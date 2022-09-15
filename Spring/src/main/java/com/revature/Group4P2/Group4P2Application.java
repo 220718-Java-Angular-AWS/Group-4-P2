@@ -14,6 +14,4 @@ public class Group4P2Application {
 		System.out.println("random");
 	}
 
-
-
 }

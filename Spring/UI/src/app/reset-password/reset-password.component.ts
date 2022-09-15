@@ -13,25 +13,23 @@ import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 export class ResetPasswordComponent implements OnInit {
 
   _userService: UsersService;
-  user: Users = {
-    userId: 0,
+  user: Users = {userId: 0,
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     username: "",
     address: "",
-    cardNumber: 0
-  };
+    cardNumber: 0} ;
 
   router: ActivatedRoute;
   buttonRouter: Router;
 
-  oldPass: string = "";
-  newPass: string = "";
-  confirmNewPass: string = "";
+  oldPass: String = '';
+  newPass: String = '';
+  confirmNewPass: String = '';
 
-  constructor(http: HttpClient, userService: UsersService, router: ActivatedRoute, buttonRouter: Router) {
+  constructor(http: HttpClient, userService: UsersService, router: ActivatedRoute, buttonRouter: Router) { 
     this._userService = userService;
     this.router = router;
     this.buttonRouter = buttonRouter;
@@ -53,8 +51,8 @@ export class ResetPasswordComponent implements OnInit {
   changePassword() {
     //TODO update method based off of session storage id
     //nested if statement
-    if (this.oldPass == this.user.password) {
-      if (this.newPass == this.confirmNewPass) {
+    if(this.oldPass == this.user.password) {
+      if(this.newPass == this.confirmNewPass) {
         let newUser: Users = {
           userId: this.user.userId,
           firstName: this.user.firstName,

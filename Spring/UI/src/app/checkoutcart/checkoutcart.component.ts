@@ -48,12 +48,9 @@ export class CheckoutcartComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentUserId = Number(localStorage.getItem("currentUserId"));
-    this.viewCartItems();
 
   }
-
-  
+ 
   
 
   viewCartItems() { //should somehow detect userId and load upon routing here?
@@ -95,8 +92,6 @@ export class CheckoutcartComponent implements OnInit {
           console.log("UPDATED CART SHOULD NOW BE TRUE FOR " + this.userCart.cartId);
         }
       )
-
-
   }
 
   cartId(cartId: any) {

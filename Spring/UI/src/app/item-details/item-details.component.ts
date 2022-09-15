@@ -32,8 +32,7 @@ export class ItemDetailsComponent implements OnInit {
     itemId: 0,
     itemName: "",
     itemPrice: 0,
-    catalogDetailsId: 0,
-    imageURL:""
+    catalogDetailsId: 0
   };
 
   cart : Cart= {
@@ -72,11 +71,15 @@ export class ItemDetailsComponent implements OnInit {
     console.log("Cart: ", this.cart)
     })
 
-    
+    this.findImage();
 
 
   }
 
+  findImage(): void
+  {
+
+  }
 
   changeQuantity(): void {
     if(this.catalogItem !== undefined)
