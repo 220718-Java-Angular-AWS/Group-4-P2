@@ -1,3 +1,12 @@
+nav.page {
+    width: 50%;
+}
+
+p {
+    padding-top: 20px;
+    padding-right: 150px;
+}
+
 .nav-bar{
     justify-content: space-between
 }
@@ -6,10 +15,17 @@ span {
     padding-right: 10rem;
 }
 
-.header{ margin-right: 150px;
-
+div.nav{ 
+    margin: auto;       /* do we want this to be in the middle or on the right  */
+    display: flex;
+    flex-direction: row;
+    /* gap: 75px; */
 }
 
-a {
-    padding: 10px;
+a.check {
+    padding-left: 150px;
+}
+
+a.profile {
+    padding-left: 10px;
 }

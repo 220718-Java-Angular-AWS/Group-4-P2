@@ -13,7 +13,7 @@ import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 export class ResetPasswordComponent implements OnInit {
 
   _userService: UsersService;
-  user: Users = {id: 0,
+  user: Users = {userId: 0,
     firstName: "",
     lastName: "",
     email: "",
@@ -55,7 +55,7 @@ export class ResetPasswordComponent implements OnInit {
     if(this.oldPass == this.user.password) {
       if(this.newPass == this.confirmNewPass) {
         let newUser: Users = {
-          id: this.user.id,
+          userId: this.user.userId,
           firstName: this.user.firstName,
           lastName: this.user.lastName,
           email: this.user.email,

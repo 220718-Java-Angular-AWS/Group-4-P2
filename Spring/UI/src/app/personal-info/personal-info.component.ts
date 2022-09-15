@@ -14,7 +14,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class PersonalInfoComponent implements OnInit {
 
   _userService: UsersService;
-  user: Users = {id: 0,
+  user: Users = {userId: 0,
     firstName: "",
     lastName: "",
     email: "",
