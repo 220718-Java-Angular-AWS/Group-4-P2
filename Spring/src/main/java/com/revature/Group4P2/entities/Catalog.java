@@ -25,7 +25,7 @@ public class Catalog {
     private String imageURL;
     
     @Transient
-    private Integer catalogDetailId;
+    private Integer catalodDetailId;
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "catalogDetails - catalog")
@@ -90,12 +90,12 @@ public class Catalog {
         return cartItems;
     }
 
-    public Integer getCatalogDetailId() {
-        return catalogDetailId;
+    public Integer getCatalodDetailId() {
+        return catalodDetailId;
     }
 
-    public void setCatalogDetailId(Integer catalogDetailId) {
-        this.catalogDetailId = catalogDetailId;
+    public void setCatalodDetailId(Integer catalodDetailId) {
+        this.catalodDetailId = catalodDetailId;
     }
 
     public void setCartItems(List<CartItems> cartItems) {

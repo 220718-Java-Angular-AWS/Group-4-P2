@@ -5,8 +5,6 @@ import { CartItems } from '../cart-items';
 import { CartItemService } from '../cart-item.service';
 import { Users } from '../user';
 import { UsersService } from '../users.service';
-import { CatalogService } from '../catalog.service';
-import { Catalog } from '../catalog';
 
 @Component({
   selector: 'app-checkoutcart',
@@ -14,79 +12,25 @@ import { Catalog } from '../catalog';
   styleUrls: ['./checkoutcart.component.css']
 })
 export class CheckoutcartComponent implements OnInit {
-  _cartService: any;
-    //how do i grab the current instance of userId + what cart is false? 
-  _cartItemsService: CartItemService;
-  _catalogService: CatalogService;
-  currentUserId: number = 0;
-  cartCatalogItems: [Catalog,number][] = [];
-  totalCost: number = 0;
-  confirmationCheckout: string = "";
-  userCart: Cart = 
-  {
-    cartId: 0,
-    date: "",
-    purchasedCart: false,
-    cartUserId:0
+  _CartService: any;
+  _cart: Cart[] | undefined; //how do i grab the current instance of userId + what cart is false? 
+  
 
-  }
-
-
-
-  constructor(cartService: CartService, cartItemService: CartItemService, catalogService: CatalogService)
-  {
-    this._cartService = cartService;
-    this._cartItemsService = cartItemService;
-    this._catalogService = catalogService;
-  }
+  //requires  an *ngFor
 
   ngOnInit(): void {
-    this.currentUserId = Number(localStorage.getItem("currentUserId"));
-    this.viewCartItems();
 
   }
  
-  viewCartItems() { //should somehow detect userId and load upon routing here?
-    this._cartService.GetCartByIdFalseCart(this.currentUserId)
-    .subscribe((cart : Cart) => {
-      console.log("CHECKOUT VIEW CART : ", cart);
-      this.userCart = cart;
-
-      // need to get all the cart items associated with this cart 
-      this._cartItemsService.GetAllCartItemsByCartId(cart.cartId)
-      .subscribe((cartItems: CartItems[])=> {
-
-        // need to get all the items from catalog to display 
-        for( var item of cartItems)
-        {
-          //cartCatalogItems
-          this._catalogService.GetcatalogbyId(item.catalogId)
-          .subscribe((catItem: Catalog)=>
-          {
-            this.totalCost+= item.totalCost;
-            this.cartCatalogItems.push([catItem, item.totalCost])
-          })
-        }
-      })
-      
+  viewCart() { //should somehow detect userId and load upon routing here?
+    this._CartService.GetCartByIdFalseCart(this.cartId).subscribe((cart : Cart[]) => {
+      this._cart = cart;
+      console.log(this._cart)
     }); 
   }
 
   buyCart(){
-
-    // need to set the cart to true 
-
-    // find a way to fake charge card maybe ??
-    this.confirmationCheckout = "Thank you for making a purchase";
-    //need to set the cart to true 
-    this.userCart.purchasedCart = true;
-    this._cartService.Updatecart(this.userCart)
-      .subscribe(
-        ()=> {
-          console.log("UPDATED CART SHOULD NOW BE TRUE FOR "+ this.userCart.cartId);
-        }
-      )
-
+//button that transforms false value to true on cart instance -should I use ngModel for this? 
   }
  
   cartId(cartId: any) {

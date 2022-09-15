@@ -44,7 +44,7 @@ public class CatalogController {
     public @ResponseBody Catalog getCatalogByItemNameId(@PathVariable String itemName)
     {
         Optional<Catalog> optionalCatalog = service.findCatalogByItemName(itemName);
-        optionalCatalog.get().setCatalogDetailId(optionalCatalog.get().getCatalogDetails().getCatalogDetailsId());
+        optionalCatalog.get().setCatalodDetailId(optionalCatalog.get().getCatalogDetails().getCatalogDetailsId());
         return optionalCatalog.get();
     }
 
@@ -55,7 +55,7 @@ public class CatalogController {
         List<Catalog> allCatalog = service.getAllCatalogByCatalogDetailsId(catId);
         for(Catalog catalog: allCatalog)
         {
-            catalog.setCatalogDetailId(catalog.getCatalogDetails().getCatalogDetailsId());
+            catalog.setCatalodDetailId(catalog.getCatalogDetails().getCatalogDetailsId());
         }
         return allCatalog;
     }
@@ -70,7 +70,7 @@ public class CatalogController {
         List<Catalog> allCatalog = service.getAllCatalog();
         for(Catalog catalog: allCatalog)
         {
-            catalog.setCatalogDetailId(catalog.getCatalogDetails().getCatalogDetailsId());
+            catalog.setCatalodDetailId(catalog.getCatalogDetails().getCatalogDetailsId());
         }
         return allCatalog;
     }
@@ -83,7 +83,7 @@ public class CatalogController {
         Optional<CatalogDetails> optional = catalogDetailService.getCatalogDetailById(catalog.getCatalogDetails().getCatalogDetailsId());
         if(optional.isPresent()) {
             catalog.setCatalogDetails(catalogDetailService.getCatalogDetailById(catalog.getCatalogDetails().getCatalogDetailsId()).get());
-            catalog.setCatalogDetailId(catalog.getCatalogDetails().getCatalogDetailsId());
+            catalog.setCatalodDetailId(catalog.getCatalogDetails().getCatalogDetailsId());
         }
         service.createCatalog(catalog);
     }
