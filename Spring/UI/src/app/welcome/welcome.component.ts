@@ -44,7 +44,7 @@ export class WelcomeComponent {
     {
       firstName: this.firstName,
       lastName: this.lastName,
-      username: this.lastName,
+      username: this.userName,
       email: this.email,
       password: this.password,
       address: this.address,

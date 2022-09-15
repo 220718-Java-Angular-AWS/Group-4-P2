@@ -46,6 +46,10 @@ public class CartController {
     public @ResponseBody List<Cart> getAllCartByUserId(@PathVariable Integer getAllCartById)
     {
         List<Cart> cart = service.getAllCartById(getAllCartById);
+        for(int i = 0; i < cart.size(); i++)
+        {
+            cart.get(i).setCartUserId(cart.get(i).getUser().getUserId());
+        }
         return cart;
     }
 
@@ -54,7 +58,9 @@ public class CartController {
     @ResponseStatus(value = HttpStatus.OK)
     public @ResponseBody Cart getCartByUserIdPurchaseIsFalse(@PathVariable Integer getCartById)
     {
+        System.out.println("made into get cart userId Purchase is False ");
         Optional<Cart> optionalCart = service.getCartByUserIdPurchaseIsFalse(getCartById);
+        optionalCart.get().setCartUserId(optionalCart.get().getUser().getUserId());
         return optionalCart.get();
     }
 

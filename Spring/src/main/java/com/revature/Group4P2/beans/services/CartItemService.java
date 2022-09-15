@@ -27,6 +27,7 @@ public class CartItemService {
 
     public List<CartItems> getAllCartByCartId(Integer id)
     {
+        List<CartItems> cartItems = repo.findAllCartItemsByCartId(id);
         return repo.findAllCartItemsByCartId(id);
     }
 
