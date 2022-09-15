@@ -9,6 +9,10 @@ import { OrderhistoryComponent } from './orderhistory/orderhistory.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { UpdateAddressComponent } from './update-address/update-address.component';
+import { ChangeEmailComponent } from './change-email/change-email.component';
+import { PaymentInfoComponent } from './payment-info/payment-info.component';
 
 
 const routes: Routes = [
@@ -19,7 +23,13 @@ const routes: Routes = [
   {path: "orderhistory", component: OrderhistoryComponent},
   {path: "checkoutcart", component: CheckoutcartComponent},
   {path: "personal-info", component: PersonalInfoComponent},
-  {path: "itemDetails/:id", component: ItemDetailsComponent}
+  {path: "itemDetails/:id", component: ItemDetailsComponent},
+  {path: "reset-password", component: ResetPasswordComponent},
+  {path: "update-address", component: UpdateAddressComponent},
+  {path: "change-email", component: ChangeEmailComponent},
+  {path: "payment-info", component: PaymentInfoComponent},
+  {path: "home", component: CatalogDisplayComponent},
+  {path: "past-purchases", component: OrderhistoryComponent}
 ];
 
 @NgModule({

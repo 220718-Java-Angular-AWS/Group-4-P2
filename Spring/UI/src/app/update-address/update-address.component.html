@@ -1,1 +1,9 @@
-<p>update-address works!</p>
+<app-nav-bar></app-nav-bar>
+<div class="updateAddress">
+    <span *ngIf="!editMode">Address: {{user?.address}}</span> 
+    <span *ngIf="editMode">Address: <input type="text" [formControl]="addressInput"></span>   
+    <div>
+        <button (click)="editMode=true">Edit</button>
+        <button (click)="updateAddress()">Update Address</button>
+    </div> 
+</div>
