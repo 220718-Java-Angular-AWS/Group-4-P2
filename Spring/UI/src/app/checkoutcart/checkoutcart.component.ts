@@ -83,12 +83,17 @@ export class CheckoutcartComponent implements OnInit {
 
   buyCart() {
 
+    console.log("MADE INTO BUY CART")
+
     // need to set the cart to true 
 
     // find a way to fake charge card maybe ??
+
     this.confirmationCheckout = "Thank you for making a purchase";
     //need to set the cart to true 
     this.userCart.purchasedCart = true;
+
+    console.log("USER CART: ", this.userCart)
     this._cartService.Updatecart(this.userCart)
       .subscribe(
         () => {
