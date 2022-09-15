@@ -154,6 +154,10 @@ export class CheckoutcartComponent implements OnInit {
             console.log("Deleted Cart Item Id: " + cartItem.cartItemId)
             // this.router.navigate(['/checkoutcart'], { replaceUrl: true })
             // clear screen 
+            const currentUrl = this.router.url;
+            this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+              this.router.navigate([currentUrl]);
+            });
 
           })
 
