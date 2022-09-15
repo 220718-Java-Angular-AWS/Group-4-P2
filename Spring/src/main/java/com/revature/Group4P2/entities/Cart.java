@@ -2,6 +2,7 @@ package com.revature.Group4P2.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.persistence.*;
@@ -34,7 +35,7 @@ public class Cart {
     @ManyToOne(cascade = CascadeType.ALL)
     @JsonBackReference(value = "user-cart")
     private Users user;
-
+    
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "cart-cartitem")
     private List<CartItems> cartItems;
@@ -108,6 +109,7 @@ public class Cart {
 
     public void setCartUserId(Integer cartUserId) {
         this.cartUserId = cartUserId;
+
     }
 
     @Override
@@ -120,4 +122,5 @@ public class Cart {
                 ", cartItems=" + cartItems +
                 '}';
     }
+
 }

@@ -36,7 +36,6 @@ public class Catalog {
     @JsonManagedReference(value = "catalog-cartitem")
     private List<CartItems> cartItems;
 
-
     public Catalog() {
     }
 

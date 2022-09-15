@@ -67,6 +67,4 @@ public class CatalogService {
     {
         repo.deleteById(id);
     }
-
-
 }

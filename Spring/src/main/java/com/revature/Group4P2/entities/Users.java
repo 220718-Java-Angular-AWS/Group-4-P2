@@ -13,6 +13,7 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -41,8 +42,6 @@ public class Users {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference(value = "user-cart")
     private List<Cart> cart ;
-
-
 
     // constructors
 
