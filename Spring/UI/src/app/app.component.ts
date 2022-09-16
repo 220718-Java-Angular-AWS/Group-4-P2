@@ -16,9 +16,9 @@ export class AppComponent {
 
   ngOnInit(): void {
    
-    // this.router.navigate(['/welcome-component']); // original 
+    this.router.navigate(['/welcome-component']); // original 
     
     
-    this.router.navigate(['/personal-info']);// for testing 
+    // this.router.navigate(['/personal-info']);// for testing 
   }
 }

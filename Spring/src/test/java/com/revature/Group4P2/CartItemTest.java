@@ -3,10 +3,7 @@ package com.revature.Group4P2;
 import com.revature.Group4P2.beans.repositories.CartRepo;
 import com.revature.Group4P2.beans.services.CartService;
 
-import com.revature.Group4P2.entities.Cart;
-import com.revature.Group4P2.entities.Catalog;
-import com.revature.Group4P2.entities.CatalogDetails;
-import com.revature.Group4P2.entities.Users;
+import com.revature.Group4P2.entities.*;
 import org.junit.jupiter.api.Test;
 
 import org.junit.runner.RunWith;
@@ -39,6 +36,12 @@ public class CartItemTest {
     //testing getCartItemById() method
     @Test
     public void getCartItemByIdTest() {
+        Catalog catalog = new Catalog();
+        Cart cart = new Cart();
+        CartItems cartItems = new CartItems(1, 1, 50.50, catalog, cart);
+
+        //
+
 
     }
 

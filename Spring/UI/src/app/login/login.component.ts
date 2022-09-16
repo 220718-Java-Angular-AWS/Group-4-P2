@@ -95,6 +95,10 @@ export class LoginComponent implements OnInit {
 
   }
 
+  onCreateUser() {
+    this._router.navigate(['/welcome-component'], { replaceUrl: true })
+  }
+
 
   findCart(userReturned: Users, formalDate: string): void {
     // cart
