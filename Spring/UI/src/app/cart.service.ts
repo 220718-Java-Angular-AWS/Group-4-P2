@@ -55,7 +55,7 @@ export class CartService {
   Updatecart(data: any): Observable<CreateCart> {
     console.log("MADE INTO CART SERVICE ")
     console.log("Data from create cart:", data)
-    return this.http.put<CreateCart>(this.baseurl, JSON.stringify(data), this.httpOptions)
+    return this.http.put<CreateCart>(this.baseurl +"/", JSON.stringify(data), this.httpOptions)
     .pipe(
         retry(1),
         catchError(this.errorHandl)

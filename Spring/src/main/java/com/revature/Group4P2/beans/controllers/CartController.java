@@ -1,5 +1,6 @@
 package com.revature.Group4P2.beans.controllers;
 
+import com.revature.Group4P2.beans.services.CartItemService;
 import com.revature.Group4P2.beans.services.CartService;
 import com.revature.Group4P2.beans.services.CatalogService;
 import com.revature.Group4P2.beans.services.UserService;
@@ -23,13 +24,15 @@ public class CartController {
     // catalog and user services
     private CatalogService catalogService;
     private UserService userService;
+    private CartItemService cartItemService; // changed
 
     @Autowired
-    public CartController(CartService service, CatalogService catalogService, UserService userService) {
+    public CartController(CartService service, CatalogService catalogService, UserService userService , CartItemService cartItemService) {
         System.out.println("IN CART CONTROLLER");
         this.service = service;
         this.catalogService = catalogService;
         this.userService = userService;
+        this.cartItemService = cartItemService;
     }
 
     @RequestMapping(value = "/{cartId}", method = RequestMethod.GET)
@@ -75,6 +78,7 @@ public class CartController {
         for(int i =0; i < allCart.size(); i++)
         {
           allCart.get(i).setCartUserId(allCart.get(i).getUser().getUserId());
+
         }
         return service.getAllCart();
     }
@@ -107,17 +111,26 @@ public class CartController {
     @ResponseStatus(value = HttpStatus.ACCEPTED)
     public void updateCart(@RequestBody Cart cart)
     {
-        Optional<Users> optionalUsers = userService.getUserById(cart.getUser().getUserId());
-
+        System.out.println("UPDATE CART");
+        Optional<Users> optionalUsers = userService.getUserById(cart.getCartUserId());
+        System.out.println(1);
+//        List<CartItems> cartItems = cartItemService.getAllCartByCartId(cart.getCartId());
+//        System.out.println(2);
         if(optionalUsers.isPresent()) {
-            cart.setUser(userService.getUserById(cart.getUser().getUserId()).get());
+            System.out.println(3);
+            cart.setUser(optionalUsers.get());
+            System.out.println(4);
+//            cart.setCartItems(cartItems);
+//            System.out.println(5);
             service.updateCart(cart);
+            System.out.println(6);
         }
         else
         {
             // throw exception later on
             System.out.println("CART ITEM NOT UPDATED");
         }
+
     }
     // DELETE - delete - delete
     @RequestMapping(value = "/{cartId}", method = RequestMethod.DELETE)

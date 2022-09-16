@@ -59,21 +59,59 @@ export class WelcomeComponent {
     }
     else {
 
-      // then need to post new User 
-      this.service.CreateUser(newUser)
-        .subscribe(data => {
-          console.log("Post Request for creating new employee");
-          console.log("New User:" + newUser.address)
+      let observable: Observable<HttpResponse<Object>> = this.service.CreateUser(newUser);
+      observable.subscribe(
+        (response: HttpResponse<Object>) => {
+          console.log("Observable has emitted a value...");
+          if (response.status != 200) {
 
-          // 
-          this.router.navigate(navigationDestination, { replaceUrl: true });
+            alert("Bad Sign Up Attempt");
+
+          }
+          else
+          {
+            this.router.navigate(navigationDestination, { replaceUrl: true });
+          }
+        
         });
+      // // then need to post new User 
+      // this.service.CreateUser(newUser)
+      //   .subscribe(data => {
+      //     console.log("Post Request for creating new employee");
+      //     console.log("New User:" + newUser.address)
+
+      //     // 
+      //     this.router.navigate(navigationDestination, { replaceUrl: true });
+      //   });
     }
 
 
 
 
   } // end of onsubmit
+
+  // checkSignUp(): boolean
+  // {
+  //   let signUpVal : boolean = true;
+
+  //   // check first name & last name one method
+    
+  //   // check username 
+
+  //   // check email
+
+  //   // check card number 
+
+
+
+
+  //   // check password
+
+
+
+
+  //   return signUpVal;
+  // }
 
 
 }

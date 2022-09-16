@@ -1,7 +1,10 @@
 <app-nav-bar></app-nav-bar>
 
 <h1 class = 'header'>Personal Information</h1>
-<div class = "center">
+
+<div class = 'flex' >
+
+<div class = 'center'>
 <p class = 'blocktext'> Hello {{user.firstName}} {{user.lastName}}!</p>
 <br>
 <p class = 'blocktext'>Email: {{user.email}}</p>
@@ -11,17 +14,16 @@
 <p class = 'blocktext'>Address: {{user.address}}</p>
 </div>
 
-<br>
-<br>
-
 <div class = 'btn'>
 <button class = 'btn1' (click)='resetPass()'>Change Password</button>
 <button class = 'btn1' (click)='updateAdd()'>Update Address</button>
-<br>
 <button class = 'btn1' (click)='changeEmail()'>Change Email</button>
-<button class = 'btn1' (click)='payInfo()'>Payment Info</button>
+
 <br>
+
+<button class = 'btn1' (click)='payInfo()'>Payment Info</button>
 <button class = 'btn1' (click)='pastPurchases()'>Past Purchases</button>
 <button class = 'btn1' (click)='home()' >Return Home</button>
 </div>
 
+</div>

@@ -87,7 +87,9 @@ export class ItemDetailsComponent implements OnInit {
 
   addItemToCart(): void
   {
-    // need to add the item to the cart
+    if(this.quantity !=0)
+    {
+      // need to add the item to the cart
     console.log("MADE INTO ADD CART ITEM") 
     let createItem : CreateCartItems ;
     
@@ -109,6 +111,12 @@ export class ItemDetailsComponent implements OnInit {
 
     // add item to screen 
     this.itemAddedToCart = "Amount of $"+ this.purchaseAmount + " was added to your cart";
+    }
+
+    else
+    {
+      alert("Choose A quantity");
+    }
 
   }
 

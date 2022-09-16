@@ -1,10 +1,11 @@
 nav.page {
     width: 50%;
+    height: 200px;
 }
 
 p {
     padding-top: 20px;
-    padding-right: 150px;
+    padding-right: 90px;
 }
 
 .nav-bar{
@@ -23,10 +24,14 @@ div.nav{
 }
 
 a.check {
+    padding-top: 10px;
     padding-left: 150px;
+    /* width: 300px;
+    height: auto; */
 }
 
 a.profile {
+    padding-top: 10px;
     padding-left: 10px;
 }
 

@@ -8,6 +8,7 @@ import { UsersService } from '../users.service';
 import { CatalogService } from '../catalog.service';
 import { Catalog } from '../catalog';
 import { Router } from '@angular/router';
+import { CreateCart } from '../createCart';
 
 @Component({
   selector: 'app-checkoutcart',
@@ -33,18 +34,21 @@ export class CheckoutcartComponent implements OnInit {
     }
 
   userCartItems: CartItems[] = [];
-
+  now = new Date();
+  formalDate = this.now.getMonth() + "/" + this.now.getDate() + "/" + this.now.getFullYear()
+  _userService: UsersService;
 
   router: Router;
 
 
 
 
-  constructor(cartService: CartService, cartItemService: CartItemService, catalogService: CatalogService, router: Router) {
+  constructor(cartService: CartService, cartItemService: CartItemService, catalogService: CatalogService, router: Router, userService: UsersService) {
     this._cartService = cartService;
     this._cartItemsService = cartItemService;
     this._catalogService = catalogService;
     this.router = router;
+    this._userService = userService;
   }
 
   ngOnInit(): void {
@@ -83,21 +87,53 @@ export class CheckoutcartComponent implements OnInit {
 
   buyCart() {
 
+    console.log("MADE INTO BUY CART")
+
     // need to set the cart to true 
 
     // find a way to fake charge card maybe ??
+
     this.confirmationCheckout = "Thank you for making a purchase";
     //need to set the cart to true 
     this.userCart.purchasedCart = true;
+
+    console.log("USER CART: ", this.userCart)
     this._cartService.Updatecart(this.userCart)
       .subscribe(
         () => {
           console.log("UPDATED CART SHOULD NOW BE TRUE FOR " + this.userCart.cartId);
+
+          this._userService.GetUserbyId()
+          .subscribe(
+            (currentUser: Users)=>
+            {
+              // create them a new cart 
+              let newCart: CreateCart = 
+              {
+                date: this.formalDate,
+                purchasedCart: false,
+                user: currentUser
+              }
+  
+            console.log("new cart: ", newCart);
+            this._cartService.Createcart(newCart)
+            .subscribe(
+              () => 
+              {
+                console.log("post request sent CREATE USER A NEW CART...")
+              });
+  
+            }
+
+          )
+          
         }
       )
 
 
   }
+
+
 
   cartId(cartId: any) {
     throw new Error('Method not implemented.');
@@ -118,6 +154,10 @@ export class CheckoutcartComponent implements OnInit {
             console.log("Deleted Cart Item Id: " + cartItem.cartItemId)
             // this.router.navigate(['/checkoutcart'], { replaceUrl: true })
             // clear screen 
+            const currentUrl = this.router.url;
+            this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+              this.router.navigate([currentUrl]);
+            });
 
           })
 
