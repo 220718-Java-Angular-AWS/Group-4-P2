@@ -50,6 +50,15 @@ span {
 
 }
 
+button {
+    width: 175px;
+    height: 40px;
+    margin-top: 10px;
+    background-color: beige;
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 /*
 break between styling because
 */
