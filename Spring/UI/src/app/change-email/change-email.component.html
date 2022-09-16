@@ -1,8 +1,10 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="changeEmail">
+    <div class = text>
     <span *ngIf="!editMode">Current Email: {{user?.email}}</span> 
     <span *ngIf="editMode">Email: <input type="text" [formControl]="emailInput"></span>   
+    </div>
     <div>
         <button (click)="editMode=true">Edit</button>
 
